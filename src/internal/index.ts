@@ -38,7 +38,6 @@ export const getConfig = () => {
 
 export const generateMnemonic = async function () {
     await assertWallet()
-    console.log("generating Mnemonic")
     return wallet.generate_mnemonic()
 }
 
