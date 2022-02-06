@@ -22,14 +22,15 @@ export const ed25519 = {
     },
     sign: async (
         data: Uint8Array,
-        { pre_name: string = DEFAULT_NAME, dataLayout = {} }
+        opts = { pre_name: DEFAULT_NAME, dataLayout: {} }
     ) => {
         await assertWallet()
-        if (!(pre && pre_name && pre.get(pre_name)))
+        if (!pre || !opts.pre_name || !pre.get(opts.pre_name))
             return new Error("No signer available.")
         // TODO, data layout to confirm what is being signed
         if (window.confirm(`Sign message?`)) {
-            return pre.get(pre_name).sign(data)
+            const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
+            return signature
         }
     },
 
@@ -37,11 +38,15 @@ export const ed25519 = {
     verify: (
         public_key: Uint8Array,
         message: Uint8Array,
-        signature: Uint8Array
+        signature: Uint8Array,
+        opts = { pre_name: DEFAULT_NAME, dataLayout: {} }
     ) => {
-        return pre
-            .get(pre_name)
-            .verify(public_key, new Uint8Array(message), signature)
+        const verified = wallet.verify(
+            new Uint8Array(public_key),
+            new Uint8Array(message),
+            new Uint8Array(signature)
+        )
+        return verified
     },
 }
 
