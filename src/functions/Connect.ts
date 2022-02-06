@@ -29,8 +29,6 @@ export const connectors = () => {
     return allConnectors.sort((a, b) => a.timestamp - b.timestamp)
 }
 
-console.log({ state })
-
 export { state }
 
 async function initConnector() {
