@@ -32,7 +32,6 @@ async function loadWallet() {
 export { getWallet }
 
 async function assertWallet() {
-    console.log("Asserting wallet", { wallet })
     if (!wallet) return await getWallet()
 }
 
@@ -123,7 +122,6 @@ export function getWalletById(walletId?: number | string) {
 
 export async function generateMnemonic() {
     await assertWallet()
-    console.log("generating Mnemonic")
     return wallet.generate_mnemonic()
 }
 
