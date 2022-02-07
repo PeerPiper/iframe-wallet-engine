@@ -65,7 +65,5 @@
 </script>
 
 {#if mounted}
-	<Manager>
-		<GetKeys on:loadedKeys={syncKeys} />
-	</Manager>
+	<slot {syncKeys} />
 {/if}
