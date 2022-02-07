@@ -21,7 +21,7 @@
 		// If 1) is NOT top AND 2) No keys are stored a new twin window must be opened so that the user can generate keys, in the top window
 		openTwinWindow = () => {
 			connecting = true;
-			openedWindow = window.open(window.location.origin, '_blank'); // open the same domain to provide maximum security.
+			openedWindow = window.open(window.location.href, '_blank'); // open the same domain to provide maximum security.
 		};
 
 		handleMessage = async (event) => {
