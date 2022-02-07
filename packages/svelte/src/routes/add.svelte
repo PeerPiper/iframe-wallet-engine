@@ -9,7 +9,7 @@
 	import Icon from '$lib/components/atomic/Icon.svelte';
 	// import { LedgerProviderData } from '$lib/providers/Ledger.ts'
 	// import { arweave } from '$lib/store/ArweaveStore'
-	import { addProvider, LedgerProviderData } from '@peerpiper/iframe-wallet-engine';
+	// import { addProvider, LedgerProviderData } from '@peerpiper/iframe-wallet-engine';
 
 	import LogoArweave from '$lib/assets/logos/arweave.svg';
 	import IconAddBox from '$lib/assets/icons/add_box.svg';
