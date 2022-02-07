@@ -54,14 +54,14 @@ export const loadMnemonicInProxcryptor = async function (
 export const getLoadedKeys = () => {
     let results = []
 
-    for (let [pre_name, proxcryptor] of pre.entries()) {
+    pre.forEach((proxcryptor, pre_name) => {
         results.push({
             name: pre_name,
             publicKey: proxcryptor.public_key(),
             publicKeyJWK: proxcryptor.public_key_jwk(),
             publicKeyBase58: proxcryptor.public_key_base58(),
         })
-    }
+    })
 
     return results
 }
