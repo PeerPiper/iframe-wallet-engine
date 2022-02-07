@@ -41,9 +41,19 @@
 {#if window == window.top}
 	<!-- NOT an iframe  -->
 	<div class="top-wrapper">
-		<svelte:component this={window.opener ? Opened : Manager}>
-			<GetKeys on:loadedKeys />
-		</svelte:component>
+		{#if window.opener}
+			<!-- Opened handles on:loadedKeys by ALSO syncing them with the opener window -->
+			<Opened let:syncKeys>
+				<Manager>
+					<GetKeys on:loadedKeys on:loadedKeys={syncKeys} />
+				</Manager>
+			</Opened>
+		{:else}
+			<!-- Manager handles on:loadedKeys ONLY by saving them to storage -->
+			<Manager>
+				<GetKeys on:loadedKeys />
+			</Manager>
+		{/if}
 	</div>
 {:else}
 	<!-- Auto-resize embedded iframe -->
