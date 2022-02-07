@@ -1,8 +1,8 @@
 {
     "name": "@peerpiper/iframe-wallet-engine",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "private": true,
-    "svelte": "src/index.js",
+"svelte": "src/index.js",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
     "scripts": {
