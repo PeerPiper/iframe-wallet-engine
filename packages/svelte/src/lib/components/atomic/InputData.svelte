@@ -1,8 +1,9 @@
 <script>
+	import { onMount } from 'svelte';
+
 	import { fade } from 'svelte/transition';
 
 	import DragOverlay from '$lib/components/atomic/DragOverlay.svelte';
-	import { dragOverlay } from '$lib/store/InterfaceStore';
 
 	import IconText from '$lib/assets/icons/text.svg';
 	import IconDrop from '$lib/assets/icons/drop.svg';
@@ -12,6 +13,13 @@
 	export let passphraseInput;
 	export let disabled, id, placeholder, focus;
 	let model, emit;
+	let mounted;
+
+	let dragOverlay;
+	onMount(async () => {
+		({ dragOverlay } = await import('$lib/store/InterfaceStore'));
+		mounted = true;
+	});
 
 	const handleFiles = (e) => {
 		if (disabled) {

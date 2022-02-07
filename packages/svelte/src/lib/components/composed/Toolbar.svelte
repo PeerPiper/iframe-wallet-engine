@@ -12,18 +12,16 @@
 
 	import ArweaveStore from '$lib/store/ArweaveStore';
 
-	import { verticalLayout } from '$lib/store/InterfaceStore';
-
 	import { onMount } from 'svelte';
 
 	let Connect, Wallets;
-	let interfaceStore, emitter, select;
+	let verticalLayout, interfaceStore, emitter, select;
 
 	let mounted;
 
 	onMount(async () => {
-		({ Connect, Wallets } = await import('@peerpiper/iframe-wallet-engine'));
-		({ interfaceStore, emitter } = await import('$lib/store/InterfaceStore'));
+		// ({ getWallet } = await import('@peerpiper/iframe-wallet-engine'));
+		({ verticalLayout, interfaceStore, emitter } = await import('$lib/store/InterfaceStore'));
 
 		select = (wallet, navigate) => {
 			emitter.emit('selectWallet', wallet?.key);

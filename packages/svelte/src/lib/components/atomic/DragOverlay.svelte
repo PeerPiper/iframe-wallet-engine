@@ -1,9 +1,17 @@
 <script>
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
-	import { dragOverlay } from '$lib/store/InterfaceStore';
+
+	let dragOverlay;
+	let mounted;
+
+	onMount(async () => {
+		({ dragOverlay } = await import('$lib/store/InterfaceStore'));
+		mounted = true;
+	});
 </script>
 
-{#if $dragOverlay}
+{#if mounted && $dragOverlay}
 	<div transition:fade>
 		<div class="dragOverlay" />
 	</div>
