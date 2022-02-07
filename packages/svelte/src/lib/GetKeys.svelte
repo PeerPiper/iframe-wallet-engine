@@ -41,10 +41,12 @@
 	$: if ($storedValue && $storedValue.mnemonic) loadKeys(); // load keys once there is a storedValue
 
 	async function loadKeys() {
-		// console.log('LOADING KEYS into Proxcryptor...');
+		console.log('LOADING KEYS into Proxcryptor...');
 		await internals.loadMnemonicInProxcryptor($storedValue.mnemonic); // let proxcryptorName =
+		console.log('LOADED KEYS into Proxcryptor...');
 		dispatch('loadedKeys', 'details'); // let parent component know
 		keys = getLoadedKeys(); // get all proxcryptor public key info
+		console.log({ keys });
 	}
 
 	function getLoadedKeys() {

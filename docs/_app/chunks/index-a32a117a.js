@@ -783,9 +783,8 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
     });
   });
 }, getLoadedKeys: function() {
-  console.log("Getting loaded keys!!");
   var A2 = [];
-  return console.log({ pre: U }), U.forEach(function(B2, Q2) {
+  return U.forEach(function(B2, Q2) {
     A2.push({ name: Q2, publicKey: B2.public_key(), publicKeyJWK: B2.public_key_jwk(), publicKeyBase58: B2.public_key_base58() });
   }), A2;
 } }), d = new TextDecoder(), n = { selfEncrypt: function(A2, B2, Q2) {
@@ -2002,4 +2001,4 @@ var cA = function() {
   }, A2;
 }();
 export { kA as CONSTANTS, cA as Connection, NA as handlers, x as internals };
-//# sourceMappingURL=index-1329eaf0.js.map
+//# sourceMappingURL=index-a32a117a.js.map

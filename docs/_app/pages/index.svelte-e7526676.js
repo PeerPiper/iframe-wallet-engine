@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, add_resize_listener, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as kA, internals as x } from "../chunks/index-1329eaf0.js";
+import { CONSTANTS as kA, internals as x } from "../chunks/index-a32a117a.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -28,7 +28,7 @@ function create_if_block$5(ctx) {
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block_1$1, create_else_block$3];
+  const if_block_creators = [create_if_block_1$2, create_else_block$3];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (ctx2[4])
@@ -152,7 +152,7 @@ function create_else_block$3(ctx) {
     }
   };
 }
-function create_if_block_1$1(ctx) {
+function create_if_block_1$2(ctx) {
   let current;
   const default_slot_template = ctx[6].default;
   const default_slot = create_slot(default_slot_template, ctx, ctx[5], null);
@@ -287,7 +287,7 @@ function instance$7($$self, $$props, $$invalidate) {
     topUrl = self === top ? document.URL : document.referrer;
     $$invalidate(1, openTwinWindow = () => {
       $$invalidate(3, connecting = true);
-      openedWindow = window.open(window.location.origin, "_blank");
+      openedWindow = window.open(window.location.href, "_blank");
     });
     $$invalidate(2, handleMessage = async (event) => {
       if (event.data == kA.OPENED_SIGNAL) {
@@ -335,8 +335,8 @@ const shorten = (key, start = 6, end = 6) => {
   return key.slice(0, start) + "..." + key.slice(key.length - end, key.length);
 };
 var Clipboard_svelte_svelte_type_style_lang = "";
-const get_default_slot_changes$1 = (dirty) => ({});
-const get_default_slot_context$1 = (ctx) => ({ copy: ctx[2] });
+const get_default_slot_changes$2 = (dirty) => ({});
+const get_default_slot_context$2 = (ctx) => ({ copy: ctx[2] });
 function create_else_block$2(ctx) {
   let div;
   let svg;
@@ -470,7 +470,7 @@ function create_fragment$6(ctx) {
   let mounted;
   let dispose;
   const default_slot_template = ctx[5].default;
-  const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context$1);
+  const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context$2);
   const if_block_creators = [create_if_block$4, create_else_block$2];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
@@ -525,7 +525,7 @@ function create_fragment$6(ctx) {
     p(ctx2, [dirty]) {
       if (default_slot) {
         if (default_slot.p && (!current || dirty & 16)) {
-          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[4], !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, get_default_slot_changes$1), get_default_slot_context$1);
+          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[4], !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, get_default_slot_changes$2), get_default_slot_context$2);
         }
       }
       let previous_block_index = current_block_type_index;
@@ -624,7 +624,7 @@ function create_if_block$3(ctx) {
   let show_if = ctx[0].filter(func);
   let current;
   let if_block0 = show_if_1 && create_if_block_2(ctx);
-  let if_block1 = show_if && create_if_block_1(ctx);
+  let if_block1 = show_if && create_if_block_1$1(ctx);
   return {
     c() {
       div = element("div");
@@ -689,7 +689,7 @@ function create_if_block$3(ctx) {
             transition_in(if_block1, 1);
           }
         } else {
-          if_block1 = create_if_block_1(ctx2);
+          if_block1 = create_if_block_1$1(ctx2);
           if_block1.c();
           transition_in(if_block1, 1);
           if_block1.m(div, null);
@@ -906,7 +906,7 @@ function create_each_block_1(ctx) {
     }
   };
 }
-function create_if_block_1(ctx) {
+function create_if_block_1$1(ctx) {
   let div2;
   let div0;
   let span;
@@ -1070,7 +1070,7 @@ function create_default_slot_1$1(ctx) {
     }
   };
 }
-function create_default_slot$2(ctx) {
+function create_default_slot$1(ctx) {
   let t_value = ctx[3].publicKey + "";
   let t;
   return {
@@ -1122,7 +1122,7 @@ function create_each_block(ctx) {
   });
   clipboard2 = new Clipboard({
     props: {
-      $$slots: { default: [create_default_slot$2] },
+      $$slots: { default: [create_default_slot$1] },
       $$scope: { ctx }
     }
   });
@@ -1529,6 +1529,7 @@ function instance$4($$self, $$props, $$invalidate) {
     console.log("LOADED KEYS into Proxcryptor...");
     dispatch("loadedKeys", "details");
     $$invalidate(3, keys = getLoadedKeys());
+    console.log({ keys });
   }
   function getLoadedKeys() {
     return x.getLoadedKeys();
@@ -1552,14 +1553,14 @@ class GetKeys extends SvelteComponent {
   }
 }
 var AutoSizer_svelte_svelte_type_style_lang = "";
-const get_default_slot_changes = (dirty) => ({});
-const get_default_slot_context = (ctx) => ({ walletReady: ctx[2] });
+const get_default_slot_changes$1 = (dirty) => ({});
+const get_default_slot_context$1 = (ctx) => ({ walletReady: ctx[2] });
 function create_fragment$3(ctx) {
   let div;
   let div_resize_listener;
   let current;
   const default_slot_template = ctx[5].default;
-  const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context);
+  const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context$1);
   return {
     c() {
       div = element("div");
@@ -1590,7 +1591,7 @@ function create_fragment$3(ctx) {
     p(ctx2, [dirty]) {
       if (default_slot) {
         if (default_slot.p && (!current || dirty & 16)) {
-          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[4], !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, get_default_slot_changes), get_default_slot_context);
+          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[4], !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, get_default_slot_changes$1), get_default_slot_context$1);
         }
       }
     },
@@ -1617,9 +1618,10 @@ function instance$3($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   let offsetHeight;
   let offsetWidth;
-  let Connection, connector;
+  let Connection;
+  let connector;
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-1329eaf0.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-a32a117a.js"), true ? [] : void 0));
     let connection = new Connection();
     $$invalidate(3, connector = await connection.init());
   });
@@ -1631,8 +1633,9 @@ function instance$3($$self, $$props, $$invalidate) {
     console.log(`Setting width ${width}`);
     connector.setIframeParentWidth(width);
   }
-  function walletReady() {
+  async function walletReady() {
     console.log(`Wallet Ready`);
+    await connector;
     connector.walletReady();
   }
   function div_elementresize_handler() {
@@ -1725,82 +1728,47 @@ class Manager extends SvelteComponent {
     init(this, options, instance$2, create_fragment$2, safe_not_equal, {});
   }
 }
+const get_default_slot_changes = (dirty) => ({ syncKeys: dirty & 2 });
+const get_default_slot_context = (ctx) => ({ syncKeys: ctx[1] });
 function create_if_block$1(ctx) {
-  let manager;
   let current;
-  manager = new Manager({
-    props: {
-      $$slots: { default: [create_default_slot$1] },
-      $$scope: { ctx }
-    }
-  });
+  const default_slot_template = ctx[3].default;
+  const default_slot = create_slot(default_slot_template, ctx, ctx[2], get_default_slot_context);
   return {
     c() {
-      create_component(manager.$$.fragment);
+      if (default_slot)
+        default_slot.c();
     },
     l(nodes) {
-      claim_component(manager.$$.fragment, nodes);
+      if (default_slot)
+        default_slot.l(nodes);
     },
     m(target, anchor) {
-      mount_component(manager, target, anchor);
+      if (default_slot) {
+        default_slot.m(target, anchor);
+      }
       current = true;
     },
     p(ctx2, dirty) {
-      const manager_changes = {};
-      if (dirty & 34) {
-        manager_changes.$$scope = { dirty, ctx: ctx2 };
+      if (default_slot) {
+        if (default_slot.p && (!current || dirty & 6)) {
+          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[2], !current ? get_all_dirty_from_scope(ctx2[2]) : get_slot_changes(default_slot_template, ctx2[2], dirty, get_default_slot_changes), get_default_slot_context);
+        }
       }
-      manager.$set(manager_changes);
     },
     i(local) {
       if (current)
         return;
-      transition_in(manager.$$.fragment, local);
+      transition_in(default_slot, local);
       current = true;
     },
     o(local) {
-      transition_out(manager.$$.fragment, local);
+      transition_out(default_slot, local);
       current = false;
     },
     d(detaching) {
-      destroy_component(manager, detaching);
-    }
-  };
-}
-function create_default_slot$1(ctx) {
-  let getkeys;
-  let current;
-  getkeys = new GetKeys({});
-  getkeys.$on("loadedKeys", function() {
-    if (is_function(ctx[1]))
-      ctx[1].apply(this, arguments);
-  });
-  return {
-    c() {
-      create_component(getkeys.$$.fragment);
-    },
-    l(nodes) {
-      claim_component(getkeys.$$.fragment, nodes);
-    },
-    m(target, anchor) {
-      mount_component(getkeys, target, anchor);
-      current = true;
-    },
-    p(new_ctx, dirty) {
-      ctx = new_ctx;
-    },
-    i(local) {
-      if (current)
-        return;
-      transition_in(getkeys.$$.fragment, local);
-      current = true;
-    },
-    o(local) {
-      transition_out(getkeys.$$.fragment, local);
-      current = false;
-    },
-    d(detaching) {
-      destroy_component(getkeys, detaching);
+      if (default_slot)
+        default_slot.d(detaching);
     }
   };
 }
@@ -1876,7 +1844,8 @@ function navigateBack() {
 }
 function instance$1($$self, $$props, $$invalidate) {
   let $storedValue;
-  component_subscribe($$self, storedValue, ($$value) => $$invalidate(3, $storedValue = $$value));
+  component_subscribe($$self, storedValue, ($$value) => $$invalidate(5, $storedValue = $$value));
+  let { $$slots: slots = {}, $$scope } = $$props;
   let mounted;
   let syncKeys;
   onMount(() => {
@@ -1915,7 +1884,11 @@ function instance$1($$self, $$props, $$invalidate) {
     });
     $$invalidate(0, mounted = true);
   });
-  return [mounted, syncKeys];
+  $$self.$$set = ($$props2) => {
+    if ("$$scope" in $$props2)
+      $$invalidate(2, $$scope = $$props2.$$scope);
+  };
+  return [mounted, syncKeys, $$scope, slots];
 }
 class Opened extends SvelteComponent {
   constructor(options) {
@@ -1924,16 +1897,16 @@ class Opened extends SvelteComponent {
   }
 }
 var index_svelte_svelte_type_style_lang = "";
-function create_else_block(ctx) {
+function create_else_block_1(ctx) {
   let autosizer;
   let current;
   autosizer = new AutoSizer({
     props: {
       $$slots: {
         default: [
-          create_default_slot_1,
-          ({ walletReady }) => ({ 6: walletReady }),
-          ({ walletReady }) => walletReady ? 64 : 0
+          create_default_slot_3,
+          ({ walletReady }) => ({ 8: walletReady }),
+          ({ walletReady }) => walletReady ? 256 : 0
         ]
       },
       $$scope: { ctx }
@@ -1952,7 +1925,7 @@ function create_else_block(ctx) {
     },
     p(ctx2, dirty) {
       const autosizer_changes = {};
-      if (dirty & 193) {
+      if (dirty & 769) {
         autosizer_changes.$$scope = { dirty, ctx: ctx2 };
       }
       autosizer.$set(autosizer_changes);
@@ -1974,32 +1947,28 @@ function create_else_block(ctx) {
 }
 function create_if_block(ctx) {
   let div;
-  let switch_instance;
+  let current_block_type_index;
+  let if_block;
   let current;
-  var switch_value = window.opener ? Opened : Manager;
-  function switch_props(ctx2) {
-    return {
-      props: {
-        $$slots: { default: [create_default_slot] },
-        $$scope: { ctx: ctx2 }
-      }
-    };
+  const if_block_creators = [create_if_block_1, create_else_block];
+  const if_blocks = [];
+  function select_block_type_1(ctx2, dirty) {
+    if (window.opener)
+      return 0;
+    return 1;
   }
-  if (switch_value) {
-    switch_instance = new switch_value(switch_props(ctx));
-  }
+  current_block_type_index = select_block_type_1();
+  if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
   return {
     c() {
       div = element("div");
-      if (switch_instance)
-        create_component(switch_instance.$$.fragment);
+      if_block.c();
       this.h();
     },
     l(nodes) {
       div = claim_element(nodes, "DIV", { class: true });
       var div_nodes = children(div);
-      if (switch_instance)
-        claim_component(switch_instance.$$.fragment, div_nodes);
+      if_block.l(div_nodes);
       div_nodes.forEach(detach);
       this.h();
     },
@@ -2008,64 +1977,36 @@ function create_if_block(ctx) {
     },
     m(target, anchor) {
       insert_hydration(target, div, anchor);
-      if (switch_instance) {
-        mount_component(switch_instance, div, null);
-      }
+      if_blocks[current_block_type_index].m(div, null);
       current = true;
     },
     p(ctx2, dirty) {
-      const switch_instance_changes = {};
-      if (dirty & 128) {
-        switch_instance_changes.$$scope = { dirty, ctx: ctx2 };
-      }
-      if (switch_value !== (switch_value = window.opener ? Opened : Manager)) {
-        if (switch_instance) {
-          group_outros();
-          const old_component = switch_instance;
-          transition_out(old_component.$$.fragment, 1, 0, () => {
-            destroy_component(old_component, 1);
-          });
-          check_outros();
-        }
-        if (switch_value) {
-          switch_instance = new switch_value(switch_props(ctx2));
-          create_component(switch_instance.$$.fragment);
-          transition_in(switch_instance.$$.fragment, 1);
-          mount_component(switch_instance, div, null);
-        } else {
-          switch_instance = null;
-        }
-      } else if (switch_value) {
-        switch_instance.$set(switch_instance_changes);
-      }
+      if_block.p(ctx2, dirty);
     },
     i(local) {
       if (current)
         return;
-      if (switch_instance)
-        transition_in(switch_instance.$$.fragment, local);
+      transition_in(if_block);
       current = true;
     },
     o(local) {
-      if (switch_instance)
-        transition_out(switch_instance.$$.fragment, local);
+      transition_out(if_block);
       current = false;
     },
     d(detaching) {
       if (detaching)
         detach(div);
-      if (switch_instance)
-        destroy_component(switch_instance);
+      if_blocks[current_block_type_index].d();
     }
   };
 }
-function create_default_slot_3(ctx) {
+function create_default_slot_5(ctx) {
   let getkeys;
   let current;
   getkeys = new GetKeys({});
   getkeys.$on("loadedKeys", function() {
-    if (is_function(ctx[6]))
-      ctx[6].apply(this, arguments);
+    if (is_function(ctx[8]))
+      ctx[8].apply(this, arguments);
   });
   return {
     c() {
@@ -2096,12 +2037,12 @@ function create_default_slot_3(ctx) {
     }
   };
 }
-function create_default_slot_2(ctx) {
+function create_default_slot_4(ctx) {
   let manager;
   let current;
   manager = new Manager({
     props: {
-      $$slots: { default: [create_default_slot_3] },
+      $$slots: { default: [create_default_slot_5] },
       $$scope: { ctx }
     }
   });
@@ -2118,7 +2059,7 @@ function create_default_slot_2(ctx) {
     },
     p(ctx2, dirty) {
       const manager_changes = {};
-      if (dirty & 192) {
+      if (dirty & 768) {
         manager_changes.$$scope = { dirty, ctx: ctx2 };
       }
       manager.$set(manager_changes);
@@ -2138,13 +2079,13 @@ function create_default_slot_2(ctx) {
     }
   };
 }
-function create_default_slot_1(ctx) {
+function create_default_slot_3(ctx) {
   let connector;
   let current;
   connector = new Connector({
     props: {
       mounted: ctx[0],
-      $$slots: { default: [create_default_slot_2] },
+      $$slots: { default: [create_default_slot_4] },
       $$scope: { ctx }
     }
   });
@@ -2163,7 +2104,7 @@ function create_default_slot_1(ctx) {
       const connector_changes = {};
       if (dirty & 1)
         connector_changes.mounted = ctx2[0];
-      if (dirty & 192) {
+      if (dirty & 768) {
         connector_changes.$$scope = { dirty, ctx: ctx2 };
       }
       connector.$set(connector_changes);
@@ -2183,11 +2124,101 @@ function create_default_slot_1(ctx) {
     }
   };
 }
-function create_default_slot(ctx) {
+function create_else_block(ctx) {
+  let manager;
+  let current;
+  manager = new Manager({
+    props: {
+      $$slots: { default: [create_default_slot_2] },
+      $$scope: { ctx }
+    }
+  });
+  return {
+    c() {
+      create_component(manager.$$.fragment);
+    },
+    l(nodes) {
+      claim_component(manager.$$.fragment, nodes);
+    },
+    m(target, anchor) {
+      mount_component(manager, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const manager_changes = {};
+      if (dirty & 512) {
+        manager_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      manager.$set(manager_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(manager.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(manager.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(manager, detaching);
+    }
+  };
+}
+function create_if_block_1(ctx) {
+  let opened;
+  let current;
+  opened = new Opened({
+    props: {
+      $$slots: {
+        default: [
+          create_default_slot,
+          ({ syncKeys }) => ({ 7: syncKeys }),
+          ({ syncKeys }) => syncKeys ? 128 : 0
+        ]
+      },
+      $$scope: { ctx }
+    }
+  });
+  return {
+    c() {
+      create_component(opened.$$.fragment);
+    },
+    l(nodes) {
+      claim_component(opened.$$.fragment, nodes);
+    },
+    m(target, anchor) {
+      mount_component(opened, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const opened_changes = {};
+      if (dirty & 640) {
+        opened_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      opened.$set(opened_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(opened.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(opened.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(opened, detaching);
+    }
+  };
+}
+function create_default_slot_2(ctx) {
   let getkeys;
   let current;
   getkeys = new GetKeys({});
-  getkeys.$on("loadedKeys", ctx[4]);
+  getkeys.$on("loadedKeys", ctx[5]);
   return {
     c() {
       create_component(getkeys.$$.fragment);
@@ -2214,12 +2245,92 @@ function create_default_slot(ctx) {
     }
   };
 }
+function create_default_slot_1(ctx) {
+  let getkeys;
+  let current;
+  getkeys = new GetKeys({});
+  getkeys.$on("loadedKeys", ctx[4]);
+  getkeys.$on("loadedKeys", function() {
+    if (is_function(ctx[7]))
+      ctx[7].apply(this, arguments);
+  });
+  return {
+    c() {
+      create_component(getkeys.$$.fragment);
+    },
+    l(nodes) {
+      claim_component(getkeys.$$.fragment, nodes);
+    },
+    m(target, anchor) {
+      mount_component(getkeys, target, anchor);
+      current = true;
+    },
+    p(new_ctx, dirty) {
+      ctx = new_ctx;
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(getkeys.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(getkeys.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(getkeys, detaching);
+    }
+  };
+}
+function create_default_slot(ctx) {
+  let manager;
+  let current;
+  manager = new Manager({
+    props: {
+      $$slots: { default: [create_default_slot_1] },
+      $$scope: { ctx }
+    }
+  });
+  return {
+    c() {
+      create_component(manager.$$.fragment);
+    },
+    l(nodes) {
+      claim_component(manager.$$.fragment, nodes);
+    },
+    m(target, anchor) {
+      mount_component(manager, target, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      const manager_changes = {};
+      if (dirty & 640) {
+        manager_changes.$$scope = { dirty, ctx: ctx2 };
+      }
+      manager.$set(manager_changes);
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(manager.$$.fragment, local);
+      current = true;
+    },
+    o(local) {
+      transition_out(manager.$$.fragment, local);
+      current = false;
+    },
+    d(detaching) {
+      destroy_component(manager, detaching);
+    }
+  };
+}
 function create_fragment(ctx) {
   let current_block_type_index;
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block, create_else_block];
+  const if_block_creators = [create_if_block, create_else_block_1];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (window == window.top)
@@ -2280,13 +2391,23 @@ function instance($$self, $$props, $$invalidate) {
   function loadedKeys_handler(event) {
     bubble.call(this, $$self, event);
   }
+  function loadedKeys_handler_1(event) {
+    bubble.call(this, $$self, event);
+  }
   $$self.$$.update = () => {
     if ($$self.$$.dirty & 14) {
       if (ImmortalDB && $storedValue && save)
         save();
     }
   };
-  return [mounted, ImmortalDB, save, $storedValue, loadedKeys_handler];
+  return [
+    mounted,
+    ImmortalDB,
+    save,
+    $storedValue,
+    loadedKeys_handler,
+    loadedKeys_handler_1
+  ];
 }
 class Routes extends SvelteComponent {
   constructor(options) {
@@ -2295,4 +2416,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-589149a6.js.map
+//# sourceMappingURL=index.svelte-e7526676.js.map
