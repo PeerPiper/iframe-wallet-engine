@@ -3,7 +3,8 @@
 
 	let offsetHeight;
 	let offsetWidth;
-	let Connection, connector;
+	let Connection;
+	let connector;
 
 	onMount(async () => {
 		({ Connection } = await import('@peerpiper/iframe-wallet-engine'));
@@ -24,8 +25,9 @@
 		connector.setIframeParentWidth(width); // works
 	}
 
-	function walletReady() {
+	async function walletReady() {
 		console.log(`Wallet Ready`);
+		await connector;
 		connector.walletReady(); // works
 	}
 </script>
