@@ -23,7 +23,7 @@ import { CONSTANTS as kA, internals as x } from "../chunks/index-a32a117a.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
-function create_if_block$5(ctx) {
+function create_if_block$6(ctx) {
   let current_block_type_index;
   let if_block;
   let if_block_anchor;
@@ -199,7 +199,7 @@ function create_fragment$7(ctx) {
   let current;
   let mounted;
   let dispose;
-  let if_block = ctx[0] && create_if_block$5(ctx);
+  let if_block = ctx[0] && create_if_block$6(ctx);
   return {
     c() {
       div = element("div");
@@ -240,7 +240,7 @@ function create_fragment$7(ctx) {
             transition_in(if_block, 1);
           }
         } else {
-          if_block = create_if_block$5(ctx);
+          if_block = create_if_block$6(ctx);
           if_block.c();
           transition_in(if_block, 1);
           if_block.m(div, null);
@@ -418,7 +418,7 @@ function create_else_block$2(ctx) {
     }
   };
 }
-function create_if_block$4(ctx) {
+function create_if_block$5(ctx) {
   let div;
   let t;
   let div_outro;
@@ -471,7 +471,7 @@ function create_fragment$6(ctx) {
   let dispose;
   const default_slot_template = ctx[5].default;
   const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context$2);
-  const if_block_creators = [create_if_block$4, create_else_block$2];
+  const if_block_creators = [create_if_block$5, create_else_block$2];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (ctx2[1])
@@ -617,13 +617,13 @@ function get_each_context_1(ctx, list, i) {
   child_ctx[6] = list[i];
   return child_ctx;
 }
-function create_if_block$3(ctx) {
+function create_if_block$4(ctx) {
   let div;
   let show_if_1 = ctx[0].filter(func_1).length;
   let t;
   let show_if = ctx[0].filter(func);
   let current;
-  let if_block0 = show_if_1 && create_if_block_2(ctx);
+  let if_block0 = show_if_1 && create_if_block_2$1(ctx);
   let if_block1 = show_if && create_if_block_1$1(ctx);
   return {
     c() {
@@ -668,7 +668,7 @@ function create_if_block$3(ctx) {
             transition_in(if_block0, 1);
           }
         } else {
-          if_block0 = create_if_block_2(ctx2);
+          if_block0 = create_if_block_2$1(ctx2);
           if_block0.c();
           transition_in(if_block0, 1);
           if_block0.m(div, t);
@@ -724,7 +724,7 @@ function create_if_block$3(ctx) {
     }
   };
 }
-function create_if_block_2(ctx) {
+function create_if_block_2$1(ctx) {
   let div2;
   let div0;
   let span;
@@ -1233,7 +1233,7 @@ function create_each_block(ctx) {
 function create_fragment$5(ctx) {
   let if_block_anchor;
   let current;
-  let if_block = ctx[0] && ctx[0].length > 0 && create_if_block$3(ctx);
+  let if_block = ctx[0] && ctx[0].length > 0 && create_if_block$4(ctx);
   return {
     c() {
       if (if_block)
@@ -1259,7 +1259,7 @@ function create_fragment$5(ctx) {
             transition_in(if_block, 1);
           }
         } else {
-          if_block = create_if_block$3(ctx2);
+          if_block = create_if_block$4(ctx2);
           if_block.c();
           transition_in(if_block, 1);
           if_block.m(if_block_anchor.parentNode, if_block_anchor);
@@ -1371,7 +1371,7 @@ function create_else_block$1(ctx) {
     }
   };
 }
-function create_if_block$2(ctx) {
+function create_if_block$3(ctx) {
   let div;
   let t0;
   let button;
@@ -1443,7 +1443,7 @@ function create_fragment$4(ctx) {
   let if_block;
   let if_block_anchor;
   let current;
-  const if_block_creators = [create_if_block$2, create_else_block$1];
+  const if_block_creators = [create_if_block$3, create_else_block$1];
   const if_blocks = [];
   function select_block_type(ctx2, dirty) {
     if (ctx2[0] !== void 0 && ctx2[0] === null)
@@ -1553,44 +1553,30 @@ class GetKeys extends SvelteComponent {
   }
 }
 var AutoSizer_svelte_svelte_type_style_lang = "";
-const get_default_slot_changes$1 = (dirty) => ({});
+const get_default_slot_changes$1 = (dirty) => ({ walletReady: dirty & 4 });
 const get_default_slot_context$1 = (ctx) => ({ walletReady: ctx[2] });
-function create_fragment$3(ctx) {
-  let div;
-  let div_resize_listener;
+function create_if_block$2(ctx) {
   let current;
   const default_slot_template = ctx[5].default;
   const default_slot = create_slot(default_slot_template, ctx, ctx[4], get_default_slot_context$1);
   return {
     c() {
-      div = element("div");
       if (default_slot)
         default_slot.c();
-      this.h();
     },
     l(nodes) {
-      div = claim_element(nodes, "DIV", { class: true });
-      var div_nodes = children(div);
       if (default_slot)
-        default_slot.l(div_nodes);
-      div_nodes.forEach(detach);
-      this.h();
-    },
-    h() {
-      attr(div, "class", "autosizer svelte-e8uan9");
-      add_render_callback(() => ctx[6].call(div));
+        default_slot.l(nodes);
     },
     m(target, anchor) {
-      insert_hydration(target, div, anchor);
       if (default_slot) {
-        default_slot.m(div, null);
+        default_slot.m(target, anchor);
       }
-      div_resize_listener = add_resize_listener(div, ctx[6].bind(div));
       current = true;
     },
-    p(ctx2, [dirty]) {
+    p(ctx2, dirty) {
       if (default_slot) {
-        if (default_slot.p && (!current || dirty & 16)) {
+        if (default_slot.p && (!current || dirty & 20)) {
           update_slot_base(default_slot, default_slot_template, ctx2, ctx2[4], !current ? get_all_dirty_from_scope(ctx2[4]) : get_slot_changes(default_slot_template, ctx2[4], dirty, get_default_slot_changes$1), get_default_slot_context$1);
         }
       }
@@ -1606,10 +1592,78 @@ function create_fragment$3(ctx) {
       current = false;
     },
     d(detaching) {
-      if (detaching)
-        detach(div);
       if (default_slot)
         default_slot.d(detaching);
+    }
+  };
+}
+function create_fragment$3(ctx) {
+  let div;
+  let div_resize_listener;
+  let current;
+  let if_block = ctx[2] && create_if_block$2(ctx);
+  return {
+    c() {
+      div = element("div");
+      if (if_block)
+        if_block.c();
+      this.h();
+    },
+    l(nodes) {
+      div = claim_element(nodes, "DIV", { class: true });
+      var div_nodes = children(div);
+      if (if_block)
+        if_block.l(div_nodes);
+      div_nodes.forEach(detach);
+      this.h();
+    },
+    h() {
+      attr(div, "class", "autosizer svelte-e8uan9");
+      add_render_callback(() => ctx[6].call(div));
+    },
+    m(target, anchor) {
+      insert_hydration(target, div, anchor);
+      if (if_block)
+        if_block.m(div, null);
+      div_resize_listener = add_resize_listener(div, ctx[6].bind(div));
+      current = true;
+    },
+    p(ctx2, [dirty]) {
+      if (ctx2[2]) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+          if (dirty & 4) {
+            transition_in(if_block, 1);
+          }
+        } else {
+          if_block = create_if_block$2(ctx2);
+          if_block.c();
+          transition_in(if_block, 1);
+          if_block.m(div, null);
+        }
+      } else if (if_block) {
+        group_outros();
+        transition_out(if_block, 1, 1, () => {
+          if_block = null;
+        });
+        check_outros();
+      }
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(if_block);
+      current = true;
+    },
+    o(local) {
+      transition_out(if_block);
+      current = false;
+    },
+    d(detaching) {
+      if (detaching)
+        detach(div);
+      if (if_block)
+        if_block.d();
       div_resize_listener();
     }
   };
@@ -1620,23 +1674,21 @@ function instance$3($$self, $$props, $$invalidate) {
   let offsetWidth;
   let Connection;
   let connector;
+  let walletReady;
   onMount(async () => {
     ({ Connection } = await __vitePreload(() => import("../chunks/index-a32a117a.js"), true ? [] : void 0));
-    let connection = new Connection();
+    const connection = new Connection();
     $$invalidate(3, connector = await connection.init());
+    $$invalidate(2, walletReady = async () => {
+      console.log(`Wallet connector Ready`);
+      connector.walletReady();
+    });
   });
   function setHeight(height) {
-    console.log(`Setting height ${height}`);
     connector.setIframeParentHeight(height);
   }
   function setWidth(width) {
-    console.log(`Setting width ${width}`);
     connector.setIframeParentWidth(width);
-  }
-  async function walletReady() {
-    console.log(`Wallet Ready`);
-    await connector;
-    connector.walletReady();
   }
   function div_elementresize_handler() {
     offsetHeight = this.offsetHeight;
@@ -1732,8 +1784,8 @@ const get_default_slot_changes = (dirty) => ({ syncKeys: dirty & 2 });
 const get_default_slot_context = (ctx) => ({ syncKeys: ctx[1] });
 function create_if_block$1(ctx) {
   let current;
-  const default_slot_template = ctx[3].default;
-  const default_slot = create_slot(default_slot_template, ctx, ctx[2], get_default_slot_context);
+  const default_slot_template = ctx[4].default;
+  const default_slot = create_slot(default_slot_template, ctx, ctx[3], get_default_slot_context);
   return {
     c() {
       if (default_slot)
@@ -1751,8 +1803,8 @@ function create_if_block$1(ctx) {
     },
     p(ctx2, dirty) {
       if (default_slot) {
-        if (default_slot.p && (!current || dirty & 6)) {
-          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[2], !current ? get_all_dirty_from_scope(ctx2[2]) : get_slot_changes(default_slot_template, ctx2[2], dirty, get_default_slot_changes), get_default_slot_context);
+        if (default_slot.p && (!current || dirty & 10)) {
+          update_slot_base(default_slot, default_slot_template, ctx2, ctx2[3], !current ? get_all_dirty_from_scope(ctx2[3]) : get_slot_changes(default_slot_template, ctx2[3], dirty, get_default_slot_changes), get_default_slot_context);
         }
       }
     },
@@ -1775,7 +1827,7 @@ function create_if_block$1(ctx) {
 function create_fragment$1(ctx) {
   let if_block_anchor;
   let current;
-  let if_block = ctx[0] && create_if_block$1(ctx);
+  let if_block = ctx[0] && !ctx[2] && create_if_block$1(ctx);
   return {
     c() {
       if (if_block)
@@ -1794,10 +1846,10 @@ function create_fragment$1(ctx) {
       current = true;
     },
     p(ctx2, [dirty]) {
-      if (ctx2[0]) {
+      if (ctx2[0] && !ctx2[2]) {
         if (if_block) {
           if_block.p(ctx2, dirty);
-          if (dirty & 1) {
+          if (dirty & 5) {
             transition_in(if_block, 1);
           }
         } else {
@@ -1848,14 +1900,22 @@ function instance$1($$self, $$props, $$invalidate) {
   let { $$slots: slots = {}, $$scope } = $$props;
   let mounted;
   let syncKeys;
+  let pending = true;
   onMount(() => {
+    var _a;
+    if (window.location.origin === ((_a = window.opener) == null ? void 0 : _a.origin)) {
+      sendOpenerMsg(kA.OPENED_SIGNAL, (event) => {
+        console.log("iframe confirmed loaded by opener");
+        $$invalidate(2, pending = false);
+      });
+    }
     function sendOpenerMsg(msg, callback = (_) => {
     }) {
-      var _a;
+      var _a2;
       const channel = new MessageChannel();
       channel.port1.onmessage = callback;
       try {
-        if (((_a = window.opener) == null ? void 0 : _a.origin) === window.location.origin)
+        if (((_a2 = window.opener) == null ? void 0 : _a2.origin) === window.location.origin)
           window.opener.postMessage(msg, window.location.origin, [channel.port2]);
       } catch (error) {
         console.log("Origins didn't match");
@@ -1867,13 +1927,14 @@ function instance$1($$self, $$props, $$invalidate) {
         storedValue: $storedValue
       }, (event) => {
         console.log("onComplete", event.data);
+        $$invalidate(2, pending = null);
         navigateBack();
       });
     });
     window.addEventListener("beforeunload", () => {
-      var _a, _b;
+      var _a2, _b;
       try {
-        console.log((_a = window.opener) == null ? void 0 : _a.origin);
+        console.log((_a2 = window.opener) == null ? void 0 : _a2.origin);
         console.log(window.location.origin);
         if (((_b = window.opener) == null ? void 0 : _b.origin) === window.location.origin)
           window.opener.postMessage(kA.CLOSING);
@@ -1886,9 +1947,9 @@ function instance$1($$self, $$props, $$invalidate) {
   });
   $$self.$$set = ($$props2) => {
     if ("$$scope" in $$props2)
-      $$invalidate(2, $$scope = $$props2.$$scope);
+      $$invalidate(3, $$scope = $$props2.$$scope);
   };
-  return [mounted, syncKeys, $$scope, slots];
+  return [mounted, syncKeys, pending, $$scope, slots];
 }
 class Opened extends SvelteComponent {
   constructor(options) {
@@ -2000,7 +2061,7 @@ function create_if_block(ctx) {
     }
   };
 }
-function create_default_slot_5(ctx) {
+function create_if_block_3(ctx) {
   let getkeys;
   let current;
   getkeys = new GetKeys({});
@@ -2034,6 +2095,66 @@ function create_default_slot_5(ctx) {
     },
     d(detaching) {
       destroy_component(getkeys, detaching);
+    }
+  };
+}
+function create_default_slot_5(ctx) {
+  let if_block_anchor;
+  let current;
+  let if_block = ctx[8] && create_if_block_3(ctx);
+  return {
+    c() {
+      if (if_block)
+        if_block.c();
+      if_block_anchor = empty();
+    },
+    l(nodes) {
+      if (if_block)
+        if_block.l(nodes);
+      if_block_anchor = empty();
+    },
+    m(target, anchor) {
+      if (if_block)
+        if_block.m(target, anchor);
+      insert_hydration(target, if_block_anchor, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      if (ctx2[8]) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+          if (dirty & 256) {
+            transition_in(if_block, 1);
+          }
+        } else {
+          if_block = create_if_block_3(ctx2);
+          if_block.c();
+          transition_in(if_block, 1);
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      } else if (if_block) {
+        group_outros();
+        transition_out(if_block, 1, 1, () => {
+          if_block = null;
+        });
+        check_outros();
+      }
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(if_block);
+      current = true;
+    },
+    o(local) {
+      transition_out(if_block);
+      current = false;
+    },
+    d(detaching) {
+      if (if_block)
+        if_block.d(detaching);
+      if (detaching)
+        detach(if_block_anchor);
     }
   };
 }
@@ -2245,7 +2366,7 @@ function create_default_slot_2(ctx) {
     }
   };
 }
-function create_default_slot_1(ctx) {
+function create_if_block_2(ctx) {
   let getkeys;
   let current;
   getkeys = new GetKeys({});
@@ -2280,6 +2401,66 @@ function create_default_slot_1(ctx) {
     },
     d(detaching) {
       destroy_component(getkeys, detaching);
+    }
+  };
+}
+function create_default_slot_1(ctx) {
+  let if_block_anchor;
+  let current;
+  let if_block = ctx[7] && create_if_block_2(ctx);
+  return {
+    c() {
+      if (if_block)
+        if_block.c();
+      if_block_anchor = empty();
+    },
+    l(nodes) {
+      if (if_block)
+        if_block.l(nodes);
+      if_block_anchor = empty();
+    },
+    m(target, anchor) {
+      if (if_block)
+        if_block.m(target, anchor);
+      insert_hydration(target, if_block_anchor, anchor);
+      current = true;
+    },
+    p(ctx2, dirty) {
+      if (ctx2[7]) {
+        if (if_block) {
+          if_block.p(ctx2, dirty);
+          if (dirty & 128) {
+            transition_in(if_block, 1);
+          }
+        } else {
+          if_block = create_if_block_2(ctx2);
+          if_block.c();
+          transition_in(if_block, 1);
+          if_block.m(if_block_anchor.parentNode, if_block_anchor);
+        }
+      } else if (if_block) {
+        group_outros();
+        transition_out(if_block, 1, 1, () => {
+          if_block = null;
+        });
+        check_outros();
+      }
+    },
+    i(local) {
+      if (current)
+        return;
+      transition_in(if_block);
+      current = true;
+    },
+    o(local) {
+      transition_out(if_block);
+      current = false;
+    },
+    d(detaching) {
+      if (if_block)
+        if_block.d(detaching);
+      if (detaching)
+        detach(if_block_anchor);
     }
   };
 }
@@ -2416,4 +2597,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-e7526676.js.map
+//# sourceMappingURL=index.svelte-ff81052c.js.map
