@@ -3,37 +3,45 @@
 
 	let offsetHeight;
 	let offsetWidth;
+
+	let resolveConnector;
 	let Connection;
 	let connector;
+	// = new Promise((resolve, reject) => {
+	// 	resolveConnector = resolve;
+	// });
+
+	let walletReady;
 
 	onMount(async () => {
 		({ Connection } = await import('@peerpiper/iframe-wallet-engine'));
-		let connection = new Connection();
+		const connection = new Connection();
 		connector = await connection.init();
+
+		walletReady = async () => {
+			console.log(`Wallet connector Ready`);
+			connector.walletReady(); // works
+		};
 	});
 
 	$: connector && offsetHeight && setHeight(offsetHeight);
 	$: connector && offsetWidth && setWidth(offsetWidth);
 
 	function setHeight(height) {
-		console.log(`Setting height ${height}`);
+		// console.log(`Setting height ${height}`);
 		connector.setIframeParentHeight(height); // works
 	}
 
 	function setWidth(width) {
-		console.log(`Setting width ${width}`);
+		// console.log(`Setting width ${width}`);
 		connector.setIframeParentWidth(width); // works
-	}
-
-	async function walletReady() {
-		console.log(`Wallet Ready`);
-		await connector;
-		connector.walletReady(); // works
 	}
 </script>
 
 <div class="autosizer" bind:offsetHeight bind:offsetWidth>
-	<slot {walletReady} />
+	{#if walletReady}
+		<slot {walletReady} />
+	{/if}
 </div>
 
 <style>

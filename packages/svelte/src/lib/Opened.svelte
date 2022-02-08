@@ -10,11 +10,17 @@
 	let mounted;
 
 	let syncKeys;
-	let pending;
+	let pending = true;
 
 	onMount(() => {
 		// keyDetails = internals.getLoadedKeys(); // todo
-
+		if (window.location.origin === window.opener?.origin) {
+			sendOpenerMsg(CONSTANTS.OPENED_SIGNAL, (event) => {
+				// called when the opener replies to our message above
+				console.log('iframe confirmed loaded by opener');
+				pending = false;
+			});
+		}
 		function sendOpenerMsg(msg, callback = (_) => {}) {
 			const channel = new MessageChannel();
 			channel.port1.onmessage = callback; // Listen for messages on port1
@@ -64,6 +70,6 @@
 	}
 </script>
 
-{#if mounted}
+{#if mounted && !pending}
 	<slot {syncKeys} />
 {/if}

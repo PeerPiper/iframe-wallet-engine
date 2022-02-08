@@ -45,7 +45,9 @@
 			<!-- Opened handles on:loadedKeys by ALSO syncing them with the opener window -->
 			<Opened let:syncKeys>
 				<Manager>
-					<GetKeys on:loadedKeys on:loadedKeys={syncKeys} />
+					{#if syncKeys}
+						<GetKeys on:loadedKeys on:loadedKeys={syncKeys} />
+					{/if}
 				</Manager>
 			</Opened>
 		{:else}
@@ -61,7 +63,9 @@
 		<!-- walletReady gets passed from AutoSizer to GetKeys -->
 		<Connector {mounted}>
 			<Manager>
-				<GetKeys on:loadedKeys={walletReady} />
+				{#if walletReady}
+					<GetKeys on:loadedKeys={walletReady} />
+				{/if}
 			</Manager>
 		</Connector>
 	</AutoSizer>
