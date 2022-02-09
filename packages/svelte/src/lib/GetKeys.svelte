@@ -46,7 +46,6 @@
 		console.log('LOADED KEYS into Proxcryptor...');
 		dispatch('loadedKeys', 'details'); // let parent component know
 		keys = getLoadedKeys(); // get all proxcryptor public key info
-		console.log({ keys });
 	}
 
 	function getLoadedKeys() {

@@ -1529,7 +1529,6 @@ function instance$4($$self, $$props, $$invalidate) {
     console.log("LOADED KEYS into Proxcryptor...");
     dispatch("loadedKeys", "details");
     $$invalidate(3, keys = getLoadedKeys());
-    console.log({ keys });
   }
   function getLoadedKeys() {
     return x.getLoadedKeys();
@@ -2597,4 +2596,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-ff81052c.js.map
+//# sourceMappingURL=index.svelte-7fe99351.js.map

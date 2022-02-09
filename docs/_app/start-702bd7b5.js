@@ -735,7 +735,7 @@ class Root extends SvelteComponent {
 const c = [
   () => __vitePreload(() => import("./pages/__layout.svelte-9aa2521a.js"), true ? ["pages/__layout.svelte-9aa2521a.js","assets/pages/__layout.svelte-41888135.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css","chunks/utils-c0fae7f1.js"] : void 0),
   () => __vitePreload(() => import("./error.svelte-036faac0.js"), true ? ["error.svelte-036faac0.js","chunks/vendor-674f343c.js"] : void 0),
-  () => __vitePreload(() => import("./pages/index.svelte-ff81052c.js"), true ? ["pages/index.svelte-ff81052c.js","assets/pages/index.svelte-d06bab9c.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/index-a32a117a.js"] : void 0),
+  () => __vitePreload(() => import("./pages/index.svelte-7fe99351.js"), true ? ["pages/index.svelte-7fe99351.js","assets/pages/index.svelte-d06bab9c.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/index-a32a117a.js"] : void 0),
   () => __vitePreload(() => import("./pages/settings.svelte-89ee8e81.js"), true ? ["pages/settings.svelte-89ee8e81.js","chunks/vendor-674f343c.js"] : void 0),
   () => __vitePreload(() => import("./pages/connect.svelte-9fcca2a8.js"), true ? ["pages/connect.svelte-9fcca2a8.js","assets/pages/connect.svelte-96515d6c.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css"] : void 0),
   () => __vitePreload(() => import("./pages/add.svelte-8ee34a5f.js"), true ? ["pages/add.svelte-8ee34a5f.js","assets/pages/add.svelte-02f56086.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/singletons-cf1588ce.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css"] : void 0)
@@ -1642,4 +1642,4 @@ async function start({ paths, target, session, route, spa, trailing_slash, hydra
   dispatchEvent(new CustomEvent("sveltekit:start"));
 }
 export { start };
-//# sourceMappingURL=start-464610d4.js.map
+//# sourceMappingURL=start-702bd7b5.js.map
