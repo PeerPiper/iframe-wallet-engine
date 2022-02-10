@@ -30,6 +30,7 @@ export const ed25519 = {
         // TODO, data layout to confirm what is being signed
         if (window.confirm(`Sign message?`)) {
             const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
+            console.log({ signature })
             return signature
         }
     },
