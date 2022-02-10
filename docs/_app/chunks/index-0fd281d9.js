@@ -814,12 +814,13 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
   return { publicKey: A2.public(), secretKey: A2.secret() };
 }, sign: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = { pre_name: "Master Key", dataLayout: {} }), a(void 0, void 0, void 0, function() {
-    return H(this, function(B2) {
-      switch (B2.label) {
+    var B2;
+    return H(this, function(g2) {
+      switch (g2.label) {
         case 0:
           return [4, K()];
         case 1:
-          return B2.sent(), U && Q2.pre_name && U.get(Q2.pre_name) ? window.confirm("Sign message?") ? [2, U.get(Q2.pre_name).sign(new Uint8Array(A2))] : [2] : [2, new Error("No signer available.")];
+          return g2.sent(), U && Q2.pre_name && U.get(Q2.pre_name) ? window.confirm("Sign message?") ? (B2 = U.get(Q2.pre_name).sign(new Uint8Array(A2)), console.log({ signature: B2 }), [2, B2]) : [2] : [2, new Error("No signer available.")];
       }
     });
   });
@@ -2003,4 +2004,4 @@ var hA = function() {
   }, A2;
 }();
 export { NA as CONSTANTS, hA as Connection, FA as handlers, x as internals };
-//# sourceMappingURL=index-56588f58.js.map
+//# sourceMappingURL=index-0fd281d9.js.map

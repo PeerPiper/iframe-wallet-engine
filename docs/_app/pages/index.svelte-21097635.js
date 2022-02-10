@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, add_resize_listener, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as NA, internals as x } from "../chunks/index-56588f58.js";
+import { CONSTANTS as NA, internals as x } from "../chunks/index-0fd281d9.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -1675,7 +1675,7 @@ function instance$3($$self, $$props, $$invalidate) {
   let connector;
   let walletReady;
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-56588f58.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-0fd281d9.js"), true ? [] : void 0));
     const connection = new Connection();
     $$invalidate(3, connector = await connection.init());
     $$invalidate(2, walletReady = async () => {
@@ -2596,4 +2596,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-be1dade9.js.map
+//# sourceMappingURL=index.svelte-21097635.js.map
