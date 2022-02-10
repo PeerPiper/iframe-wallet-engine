@@ -1,4 +1,4 @@
-import { pre, DEFAULT_NAME } from "../../internal/index"
+import { pre, DEFAULT_NAME, wallet } from "../../internal/index"
 
 const textDecoder = new TextDecoder()
 
@@ -35,7 +35,7 @@ export const proxcryptor: { [Key: string]: Function } = {
     selfDecrypt: (
         encryptedMessage: EncryptedMessage,
         pre_name: string = DEFAULT_NAME
-    ) => {
+    ): Uint8Array => {
         if (
             window.confirm(
                 `Authorize site to decrypt ${textDecoder.decode(
@@ -46,7 +46,7 @@ export const proxcryptor: { [Key: string]: Function } = {
             let decrypted_message = pre
                 .get(pre_name)
                 .self_decrypt(encryptedMessage) // data, tag
-            return decrypted_message
+            return new Uint8Array(decrypted_message)
         }
     },
 
@@ -75,15 +75,16 @@ export const proxcryptor: { [Key: string]: Function } = {
                 "Wallet not connected or initialized. Run connect() and await initialize() first."
             )
 
-        if (!(pre && pre_name && pre.get(pre_name)))
-            return new Error("No proxy encryptor available for this name.")
-        let re_encrypted_message = pre
-            .get(pre_name)
-            .re_encrypt(targetPublicKey, encrypted_message, re_key)
+        if (!wallet) return new Error("No wallet encryptor available")
+        let re_encrypted_message = wallet.re_encrypt(
+            targetPublicKey,
+            encrypted_message,
+            re_key
+        )
         return re_encrypted_message
     },
 
-    reDecrypt: (re_encrypted_message, pre_name = DEFAULT_NAME) => {
+    reDecrypt: (re_encrypted_message, pre_name = DEFAULT_NAME): Uint8Array => {
         if (!assertReady())
             return new Error(
                 "Wallet not connected or initialized. Run connect() and await initialize() first."
@@ -91,8 +92,7 @@ export const proxcryptor: { [Key: string]: Function } = {
         if (!(pre && pre_name && pre.get(pre_name)))
             return new Error("No proxy encryptor available for this name.")
         let decrypted = pre.get(pre_name).re_decrypt(re_encrypted_message)
-        let textDecoder = new TextDecoder()
-        return textDecoder.decode(new Uint8Array(decrypted))
+        return new Uint8Array(decrypted)
     },
     getPublicKey: (pre_name?: string = DEFAULT_NAME): Uint8Array => {
         if (!assertReady())
