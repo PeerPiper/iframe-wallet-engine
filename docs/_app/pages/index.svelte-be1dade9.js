@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, add_resize_listener, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as kA, internals as x } from "../chunks/index-a32a117a.js";
+import { CONSTANTS as NA, internals as x } from "../chunks/index-56588f58.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -290,11 +290,11 @@ function instance$7($$self, $$props, $$invalidate) {
       openedWindow = window.open(window.location.href, "_blank");
     });
     $$invalidate(2, handleMessage = async (event) => {
-      if (event.data == kA.OPENED_SIGNAL) {
+      if (event.data == NA.OPENED_SIGNAL) {
         event.ports[0].postMessage(topUrl);
         return;
       }
-      if (event.data.key == kA.WINDOW_SYNC) {
+      if (event.data.key == NA.WINDOW_SYNC) {
         console.log("Sync received: ", event.data.storedValue);
         set_store_value(storedValue, $storedValue = event.data.storedValue, $storedValue);
         event.ports[0].postMessage("Imported");
@@ -302,7 +302,7 @@ function instance$7($$self, $$props, $$invalidate) {
         openedWindow.close();
         window.focus();
       }
-      if (event.data == kA.CLOSING) {
+      if (event.data == NA.CLOSING) {
         $$invalidate(3, connecting = false);
       }
     });
@@ -1675,7 +1675,7 @@ function instance$3($$self, $$props, $$invalidate) {
   let connector;
   let walletReady;
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-a32a117a.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-56588f58.js"), true ? [] : void 0));
     const connection = new Connection();
     $$invalidate(3, connector = await connection.init());
     $$invalidate(2, walletReady = async () => {
@@ -1903,7 +1903,7 @@ function instance$1($$self, $$props, $$invalidate) {
   onMount(() => {
     var _a;
     if (window.location.origin === ((_a = window.opener) == null ? void 0 : _a.origin)) {
-      sendOpenerMsg(kA.OPENED_SIGNAL, (event) => {
+      sendOpenerMsg(NA.OPENED_SIGNAL, (event) => {
         console.log("iframe confirmed loaded by opener");
         $$invalidate(2, pending = false);
       });
@@ -1922,7 +1922,7 @@ function instance$1($$self, $$props, $$invalidate) {
     }
     $$invalidate(1, syncKeys = () => {
       sendOpenerMsg({
-        key: kA.WINDOW_SYNC,
+        key: NA.WINDOW_SYNC,
         storedValue: $storedValue
       }, (event) => {
         console.log("onComplete", event.data);
@@ -1936,7 +1936,7 @@ function instance$1($$self, $$props, $$invalidate) {
         console.log((_a2 = window.opener) == null ? void 0 : _a2.origin);
         console.log(window.location.origin);
         if (((_b = window.opener) == null ? void 0 : _b.origin) === window.location.origin)
-          window.opener.postMessage(kA.CLOSING);
+          window.opener.postMessage(NA.CLOSING);
         navigateBack();
       } catch (error) {
         console.log("Origins didn't match");
@@ -2596,4 +2596,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-7fe99351.js.map
+//# sourceMappingURL=index.svelte-be1dade9.js.map
