@@ -1,9 +1,9 @@
 {
 	"name": "iframe-wallet-frontend-sveltekit",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"scripts": {
 		"dev": "svelte-kit dev --port 8089",
-		"build": "node svelte-build-before.js && svelte-kit build && node svelte-build-after.js",
+		"build": "npm --prefix ../../ run build && node svelte-build-before.js && svelte-kit build && node svelte-build-after.js",
 		"package": "svelte-kit package",
 		"preview": "svelte-kit preview",
 		"check": "svelte-check --tsconfig ./tsconfig.json",
