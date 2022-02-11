@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-a9f148a7.js",
+    "file": "start-05e6c710.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -18,7 +18,7 @@
     ]
   },
   "src/routes/__layout.svelte": {
-    "file": "pages/__layout.svelte-bd6da02e.js",
+    "file": "pages/__layout.svelte-921aba13.js",
     "src": "src/routes/__layout.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -52,7 +52,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-21097635.js",
+    "file": "pages/index.svelte-718a9f4f.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -66,7 +66,7 @@
       "node_modules/immortal-db/src/index.js"
     ],
     "css": [
-      "assets/pages/index.svelte-d06bab9c.css"
+      "assets/pages/index.svelte-752b5769.css"
     ]
   },
   "src/routes/settings.svelte": {
@@ -79,7 +79,7 @@
     ]
   },
   "src/routes/connect.svelte": {
-    "file": "pages/connect.svelte-92c7dd39.js",
+    "file": "pages/connect.svelte-0213c53f.js",
     "src": "src/routes/connect.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -100,7 +100,7 @@
     ]
   },
   "src/routes/add.svelte": {
-    "file": "pages/add.svelte-93a2daf4.js",
+    "file": "pages/add.svelte-7204caf6.js",
     "src": "src/routes/add.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -157,7 +157,7 @@
     ]
   },
   "../../dist/index.mjs": {
-    "file": "chunks/index-0fd281d9.js",
+    "file": "chunks/index-e838aba2.js",
     "src": "../../dist/index.mjs",
     "isDynamicEntry": true
   },
