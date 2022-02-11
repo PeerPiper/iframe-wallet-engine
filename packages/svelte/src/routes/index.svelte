@@ -5,6 +5,7 @@
 	import { storedValue } from '$lib/stores';
 	import AutoSizer from '$lib/AutoSizer.svelte';
 	import Opened from '$lib/Opened.svelte';
+	import Confirmer from '$lib/Confirmer.svelte';
 
 	import Manager from '$lib/Manager.svelte';
 
@@ -59,9 +60,10 @@
 	</div>
 {:else}
 	<!-- Auto-resize embedded iframe -->
-	<AutoSizer let:walletReady>
+	<AutoSizer let:walletReady let:show let:hide>
 		<!-- walletReady gets passed from AutoSizer to GetKeys -->
 		<Connector {mounted}>
+			<Confirmer {show} {hide} />
 			<Manager>
 				{#if walletReady}
 					<GetKeys on:loadedKeys={walletReady} />
