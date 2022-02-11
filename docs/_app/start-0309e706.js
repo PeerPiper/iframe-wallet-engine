@@ -733,12 +733,12 @@ class Root extends SvelteComponent {
   }
 }
 const c = [
-  () => __vitePreload(() => import("./pages/__layout.svelte-921aba13.js"), true ? ["pages/__layout.svelte-921aba13.js","assets/pages/__layout.svelte-41888135.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css","chunks/utils-c0fae7f1.js"] : void 0),
+  () => __vitePreload(() => import("./pages/__layout.svelte-a2bca606.js"), true ? ["pages/__layout.svelte-a2bca606.js","assets/pages/__layout.svelte-2f4dc378.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css","chunks/utils-c0fae7f1.js"] : void 0),
   () => __vitePreload(() => import("./error.svelte-036faac0.js"), true ? ["error.svelte-036faac0.js","chunks/vendor-674f343c.js"] : void 0),
-  () => __vitePreload(() => import("./pages/index.svelte-718a9f4f.js"), true ? ["pages/index.svelte-718a9f4f.js","assets/pages/index.svelte-752b5769.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/index-e838aba2.js"] : void 0),
+  () => __vitePreload(() => import("./pages/index.svelte-2c9cbe38.js"), true ? ["pages/index.svelte-2c9cbe38.js","assets/pages/index.svelte-752b5769.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/index-6e0a3fee.js"] : void 0),
   () => __vitePreload(() => import("./pages/settings.svelte-89ee8e81.js"), true ? ["pages/settings.svelte-89ee8e81.js","chunks/vendor-674f343c.js"] : void 0),
-  () => __vitePreload(() => import("./pages/connect.svelte-0213c53f.js"), true ? ["pages/connect.svelte-0213c53f.js","assets/pages/connect.svelte-96515d6c.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css"] : void 0),
-  () => __vitePreload(() => import("./pages/add.svelte-7204caf6.js"), true ? ["pages/add.svelte-7204caf6.js","assets/pages/add.svelte-02f56086.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/singletons-cf1588ce.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css"] : void 0)
+  () => __vitePreload(() => import("./pages/connect.svelte-26113565.js"), true ? ["pages/connect.svelte-26113565.js","assets/pages/connect.svelte-96515d6c.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css"] : void 0),
+  () => __vitePreload(() => import("./pages/add.svelte-c4c6569b.js"), true ? ["pages/add.svelte-c4c6569b.js","assets/pages/add.svelte-02f56086.css","chunks/preload-helper-71185a79.js","chunks/vendor-674f343c.js","chunks/singletons-cf1588ce.js","chunks/x-e8bc2dc1.js","assets/x-0da38465.css","chunks/DragOverlay-31521107.js","assets/DragOverlay-90218f61.css"] : void 0)
 ];
 const routes = [
   [/^\/$/, [c[0], c[2]], [c[1]]],
@@ -1642,4 +1642,4 @@ async function start({ paths, target, session, route, spa, trailing_slash, hydra
   dispatchEvent(new CustomEvent("sveltekit:start"));
 }
 export { start };
-//# sourceMappingURL=start-05e6c710.js.map
+//# sourceMappingURL=start-0309e706.js.map

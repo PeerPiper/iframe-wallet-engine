@@ -36,14 +36,13 @@ export const proxcryptor: { [Key: string]: Function } = {
     selfDecrypt: async (
         encryptedMessage: EncryptedMessage,
         pre_name: string = DEFAULT_NAME
-    ): Uint8Array => {
-        // if (
-        //     window.confirm(
-        // `Authorize site to decrypt ${textDecoder.decode(
-        //     new Uint8Array(encryptedMessage.tag)
-        // )}?`
-        //     )
-        // )
+    ) => {
+        console.log("in selfDecrypt")
+        console.log(
+            "in selfDecrypt",
+            { encryptedMessage: encryptedMessage.tag },
+            { pre_name }
+        )
         const methodName = "proxcryptor.selfDecrypt"
         const args = textDecoder.decode(new Uint8Array(encryptedMessage.tag))
         console.log("in selfDecrypt", { methodName }, { args })
@@ -53,7 +52,7 @@ export const proxcryptor: { [Key: string]: Function } = {
             let decrypted_message = pre
                 .get(pre_name)
                 .self_decrypt(encryptedMessage) // data, tag
-            return new Uint8Array(decrypted_message)
+            return decrypted_message
         }
     },
 

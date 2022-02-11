@@ -204,7 +204,7 @@ a.reset {
 
 	.app {
 		display: flex;
-		width: fit-content;
+		width: 100%;
 	}
 
 	/* .app:before {
