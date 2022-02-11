@@ -79,6 +79,7 @@
 		border-radius: 4px;
 		box-shadow: 2px 2px 6px rgba(14, 255, 2, 0.7);
 		color: var(--font-color);
+		width: 100%;
 	}
 	.keylist {
 		display: flex;
