@@ -2005,7 +2005,7 @@ function create_fragment(ctx) {
 function instance($$self, $$props, $$invalidate) {
   let Wallets;
   onMount(async () => {
-    ({ Wallets } = await __vitePreload(() => import("../chunks/index-6e0a3fee.js"), true ? [] : void 0));
+    ({ Wallets } = await __vitePreload(() => import("../chunks/index-16febfd4.js"), true ? [] : void 0));
     console.log({ Wallets });
   });
   const hardwareProviders = [LedgerProviderData];
@@ -2093,4 +2093,4 @@ class Add extends SvelteComponent {
   }
 }
 export { Add as default };
-//# sourceMappingURL=add.svelte-c4c6569b.js.map
+//# sourceMappingURL=add.svelte-f39de559.js.map

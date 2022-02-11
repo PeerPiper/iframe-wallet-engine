@@ -1,37 +1,37 @@
 var A = Object.freeze({ __proto__: null, get concatBuffers() {
-  return m;
+  return X;
 }, get b64UrlToString() {
-  return b;
+  return m;
 }, get bufferToString() {
-  return z;
+  return b;
 }, get stringToBuffer() {
-  return l;
+  return z;
 }, get stringToB64Url() {
-  return V;
+  return l;
 }, get b64UrlToBuffer() {
-  return r;
+  return V;
 }, get bufferTob64() {
-  return T;
+  return r;
 }, get bufferTob64Url() {
-  return u;
+  return T;
 }, get b64UrlEncode() {
-  return j;
+  return u;
 }, get b64UrlDecode() {
-  return v;
+  return j;
 }, get getSignatureData() {
-  return _;
+  return v;
 }, get setSignature() {
-  return $;
+  return _;
 }, get Tag() {
-  return QA;
+  return AA;
 }, get default() {
-  return BA;
+  return QA;
 }, get Transaction() {
-  return gA;
+  return BA;
 }, get winstonToAr() {
-  return IA;
+  return gA;
 }, get arToWinston() {
-  return CA;
+  return IA;
 } }), Q = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : typeof global != "undefined" ? global : typeof self != "undefined" ? self : {};
 function B(A2) {
   var Q2 = { exports: {} };
@@ -753,12 +753,12 @@ function K() {
     });
   });
 }();
-var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "DEFAULT_PROXCRYPTOR_NAME", pre: y, keys: U, DEFAULT_NAME: "Master Key", get wallet() {
+var S = {}, q = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "DEFAULT_PROXCRYPTOR_NAME", pre: y, keys: U, DEFAULT_NAME: "Master Key", get wallet() {
   return L;
 }, assertWallet: K, setConfig: function(A2, Q2) {
-  q[A2] = Q2;
+  S[A2] = Q2;
 }, getConfig: function() {
-  return q;
+  return S;
 }, generateMnemonic: function() {
   return a(this, void 0, void 0, function() {
     return H(this, function(A2) {
@@ -787,17 +787,19 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
   return y.forEach(function(Q2, B2) {
     A2.push({ name: B2, publicKey: Q2.public_key(), publicKeyJWK: Q2.public_key_jwk(), publicKeyBase58: Q2.public_key_base58() });
   }), A2;
-} }), n = new TextDecoder(), d = { selfEncrypt: function(A2, Q2, B2) {
+} });
+new TextDecoder();
+var x, n = { selfEncrypt: function(A2, Q2, B2) {
   return B2 === void 0 && (B2 = "Master Key"), y && B2 && y.get(B2) ? y.get(B2).self_encrypt(A2, Q2) : new Error("No proxy encryptor available for this name.");
 }, selfDecrypt: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = "Master Key"), a(void 0, void 0, void 0, function() {
-    var B2, g2;
-    return H(this, function(I2) {
-      switch (I2.label) {
+    var B2, g2, I2, C2;
+    return H(this, function(E2) {
+      switch (E2.label) {
         case 0:
-          return console.log("in selfDecrypt"), console.log("in selfDecrypt", { encryptedMessage: A2.tag }, { pre_name: Q2 }), B2 = "proxcryptor.selfDecrypt", g2 = n.decode(new Uint8Array(A2.tag)), console.log("in selfDecrypt", { methodName: B2 }, { args: g2 }), [4, FA().confirm(B2, g2)];
+          return console.log("in selfDecrypt"), console.log("in selfDecrypt", { encryptedMessage: A2.tag }, { pre_name: Q2 }), B2 = "proxcryptor.selfDecrypt", g2 = "args", console.log("in selfDecrypt", { methodName: B2 }, { args: g2 }), I2 = kA(), [4, C2 = I2.confirm(B2, g2)];
         case 1:
-          return I2.sent() ? [2, y.get(Q2).self_decrypt(A2)] : [2, false];
+          return E2.sent(), C2 ? [2, y.get(Q2).self_decrypt(A2)] : [2, false];
       }
     });
   });
@@ -812,12 +814,12 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
   return new Uint8Array(B2);
 }, getPublicKey: function(A2) {
   return A2 === void 0 && (A2 = "Master Key"), y && A2 && y.get(A2) ? y.get(A2).public_key() : new Error("No proxy encryptor available for name ".concat(A2, "."));
-} }, O = { setWasmWallet: function(A2, Q2) {
-  S = A2;
+} }, d = { setWasmWallet: function(A2, Q2) {
+  x = A2;
 }, generateKeypair: function() {
   if (!assertReady())
     return new Error("Wallet not connected or initialized. Run connect() and await initialize() first.");
-  var A2 = S.generate_ed25519_keypair();
+  var A2 = x.generate_ed25519_keypair();
   return { publicKey: A2.public(), secretKey: A2.secret() };
 }, sign: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = { pre_name: "Master Key", dataLayout: {} }), a(void 0, void 0, void 0, function() {
@@ -827,7 +829,7 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
         case 0:
           return [4, K()];
         case 1:
-          return I2.sent(), y && Q2.pre_name && y.get(Q2.pre_name) ? (B2 = A2, [4, FA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
+          return I2.sent(), y && Q2.pre_name && y.get(Q2.pre_name) ? (B2 = A2, [4, kA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
         case 2:
           return I2.sent() ? (g2 = y.get(Q2.pre_name).sign(new Uint8Array(A2)), console.log({ signature: g2 }), [2, g2]) : [2, false];
       }
@@ -835,7 +837,7 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
   });
 }, verify: function(A2, Q2, B2, g2) {
   return L.verify(new Uint8Array(A2), new Uint8Array(Q2), new Uint8Array(B2));
-} }, f = Q && Q.__extends || function() {
+} }, O = Q && Q.__extends || function() {
   var A2 = function(Q2, B2) {
     return A2 = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(A3, Q3) {
       A3.__proto__ = Q3;
@@ -850,7 +852,7 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
     }
     A2(Q2, B2), Q2.prototype = B2 === null ? Object.create(B2) : (g2.prototype = B2.prototype, new g2());
   };
-}(), P = function() {
+}(), f = function() {
   function A2(A3) {
     A3 === void 0 && (A3 = "="), this._paddingCharacter = A3;
   }
@@ -895,27 +897,27 @@ var S, q = {}, x = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "D
     }
     return Q2;
   }, A2;
-}(), p = new P();
+}(), P = new f();
+var p = function(A2) {
+  return P.encode(A2);
+};
 var t = function(A2) {
-  return p.encode(A2);
+  return P.decode(A2);
 };
-var e = function(A2) {
-  return p.decode(A2);
-};
-function W(Q2) {
+function e(Q2) {
   return a(this, void 0, void 0, function() {
     var B2, g2, I2, C2, E2, D2, w2, M2;
     return H(this, function(i2) {
       switch (i2.label) {
         case 0:
-          return Array.isArray(Q2) ? (B2 = m([l("list"), l(Q2.length.toString())]), g2 = Z, I2 = [Q2], [4, crypto.subtle.digest("SHA-384", B2)]) : [3, 3];
+          return Array.isArray(Q2) ? (B2 = X([z("list"), z(Q2.length.toString())]), g2 = W, I2 = [Q2], [4, crypto.subtle.digest("SHA-384", B2)]) : [3, 3];
         case 1:
           return [4, g2.apply(void 0, I2.concat([i2.sent()]))];
         case 2:
         case 6:
           return [2, i2.sent()];
         case 3:
-          return C2 = m([l("blob"), l(Q2.byteLength.toString())]), w2 = (D2 = A).concatBuffers, [4, crypto.subtle.digest("SHA-384", C2)];
+          return C2 = X([z("blob"), z(Q2.byteLength.toString())]), w2 = (D2 = A).concatBuffers, [4, crypto.subtle.digest("SHA-384", C2)];
         case 4:
           return M2 = [i2.sent()], [4, crypto.subtle.digest("SHA-384", Q2)];
         case 5:
@@ -924,17 +926,17 @@ function W(Q2) {
     });
   });
 }
-function Z(Q2, B2) {
+function W(Q2, B2) {
   return a(this, void 0, void 0, function() {
     var g2, I2, C2, E2, D2;
     return H(this, function(w2) {
       switch (w2.label) {
         case 0:
-          return Q2.length < 1 ? [2, B2] : (C2 = (I2 = A).concatBuffers, E2 = [B2], [4, W(Q2[0])]);
+          return Q2.length < 1 ? [2, B2] : (C2 = (I2 = A).concatBuffers, E2 = [B2], [4, e(Q2[0])]);
         case 1:
           return g2 = C2.apply(I2, [E2.concat([w2.sent()])]), [4, crypto.subtle.digest("SHA-384", g2)];
         case 2:
-          return D2 = w2.sent(), [4, Z(Q2.slice(1), D2)];
+          return D2 = w2.sent(), [4, W(Q2.slice(1), D2)];
         case 3:
           return [2, w2.sent()];
       }
@@ -945,15 +947,15 @@ new (function(A2) {
   function Q2() {
     return A2 !== null && A2.apply(this, arguments) || this;
   }
-  return f(Q2, A2), Q2.prototype._encodeByte = function(A3) {
+  return O(Q2, A2), Q2.prototype._encodeByte = function(A3) {
     var Q3 = A3;
     return Q3 += 65, Q3 += 25 - A3 >>> 8 & 6, Q3 += 51 - A3 >>> 8 & -75, Q3 += 61 - A3 >>> 8 & -13, Q3 += 62 - A3 >>> 8 & 49, String.fromCharCode(Q3);
   }, Q2.prototype._decodeChar = function(A3) {
     var Q3 = 256;
     return Q3 += (44 - A3 & A3 - 46) >>> 8 & -256 + A3 - 45 + 62, Q3 += (94 - A3 & A3 - 96) >>> 8 & -256 + A3 - 95 + 63, Q3 += (47 - A3 & A3 - 58) >>> 8 & -256 + A3 - 48 + 52, Q3 += (64 - A3 & A3 - 91) >>> 8 & -256 + A3 - 65 + 0, Q3 += (96 - A3 & A3 - 123) >>> 8 & -256 + A3 - 97 + 26;
   }, Q2;
-}(P))();
-var X = B(function(A2) {
+}(f))();
+var Z = B(function(A2) {
   !function(Q2) {
     var B2, g2 = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i, I2 = Math.ceil, C2 = Math.floor, E2 = "[BigNumber Error] ", D2 = E2 + "Number primitive has more than 15 significant digits: ", w2 = 1e14, M2 = 14, i2 = 9007199254740991, o2 = [1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11, 1e12, 1e13], G2 = 1e7, k2 = 1e9;
     function F2(A3) {
@@ -1604,7 +1606,7 @@ var X = B(function(A2) {
     }(), B2.default = B2.BigNumber = B2, A2.exports ? A2.exports = B2 : (Q2 || (Q2 = typeof self != "undefined" && self ? self : window), Q2.BigNumber = B2);
   }(Q);
 });
-function m(A2) {
+function X(A2) {
   for (var Q2 = 0, B2 = 0; B2 < A2.length; B2++)
     Q2 += A2[B2].byteLength;
   var g2 = new Uint8Array(Q2), I2 = 0;
@@ -1613,42 +1615,42 @@ function m(A2) {
     g2.set(new Uint8Array(A2[B2]), I2), I2 += A2[B2].byteLength;
   return g2;
 }
-function b(A2) {
-  var Q2 = r(A2);
+function m(A2) {
+  var Q2 = V(A2);
   return typeof TextDecoder == "undefined" ? new (require("util")).TextDecoder("utf-8", { fatal: true }).decode(Q2) : new TextDecoder("utf-8", { fatal: true }).decode(Q2);
 }
-function z(A2) {
+function b(A2) {
   return typeof TextDecoder == "undefined" ? new (require("util")).TextDecoder("utf-8", { fatal: true }).decode(A2) : new TextDecoder("utf-8", { fatal: true }).decode(A2);
 }
-function l(A2) {
+function z(A2) {
   return typeof TextEncoder == "undefined" ? new (require("util")).TextEncoder().encode(A2) : new TextEncoder().encode(A2);
 }
+function l(A2) {
+  return T(z(A2));
+}
 function V(A2) {
-  return u(l(A2));
+  return new Uint8Array(t(j(A2)));
 }
 function r(A2) {
-  return new Uint8Array(e(v(A2)));
+  return p(new Uint8Array(A2));
 }
 function T(A2) {
-  return t(new Uint8Array(A2));
+  return u(r(A2));
 }
 function u(A2) {
-  return j(T(A2));
-}
-function j(A2) {
   return A2.replace(/\+/g, "-").replace(/\//g, "_").replace(/\=/g, "");
 }
-function v(A2) {
+function j(A2) {
   var Q2;
   return Q2 = (A2 = A2.replace(/\-/g, "+").replace(/\_/g, "/")).length % 4 == 0 ? 0 : 4 - A2.length % 4, A2.concat("=".repeat(Q2));
 }
-function _(A2) {
+function v(A2) {
   return a(this, void 0, void 0, function() {
     var Q2, B2;
     return H(this, function(g2) {
       switch (g2.label) {
         case 0:
-          switch (A2 = new gA(A2), A2.format) {
+          switch (A2 = new BA(A2), A2.format) {
             case 1:
               return [3, 1];
             case 2:
@@ -1657,8 +1659,8 @@ function _(A2) {
           return [3, 6];
         case 1:
           return Q2 = A2.tags.reduce(function(A3, Q3) {
-            return m([A3, Q3.get("name", { decode: true, string: false }), Q3.get("value", { decode: true, string: false })]);
-          }, new Uint8Array()), [2, m([A2.get("owner", { decode: true, string: false }), A2.get("target", { decode: true, string: false }), A2.get("data", { decode: true, string: false }), l(A2.quantity), l(A2.reward), A2.get("last_tx", { decode: true, string: false }), Q2])];
+            return X([A3, Q3.get("name", { decode: true, string: false }), Q3.get("value", { decode: true, string: false })]);
+          }, new Uint8Array()), [2, X([A2.get("owner", { decode: true, string: false }), A2.get("target", { decode: true, string: false }), A2.get("data", { decode: true, string: false }), z(A2.quantity), z(A2.reward), A2.get("last_tx", { decode: true, string: false }), Q2])];
         case 2:
           return A2.data_root ? [3, 4] : [4, A2.prepareChunks(A2.data)];
         case 3:
@@ -1666,7 +1668,7 @@ function _(A2) {
         case 4:
           return B2 = A2.tags.map(function(A3) {
             return [A3.get("name", { decode: true, string: false }), A3.get("value", { decode: true, string: false })];
-          }), [4, W([l(A2.format.toString()), A2.get("owner", { decode: true, string: false }), A2.get("target", { decode: true, string: false }), l(A2.quantity), l(A2.reward), A2.get("last_tx", { decode: true, string: false }), B2, l(A2.data_size), A2.get("data_root", { decode: true, string: false })])];
+          }), [4, e([z(A2.format.toString()), A2.get("owner", { decode: true, string: false }), A2.get("target", { decode: true, string: false }), z(A2.quantity), z(A2.reward), A2.get("last_tx", { decode: true, string: false }), B2, z(A2.data_size), A2.get("data_root", { decode: true, string: false })])];
         case 5:
           return [2, g2.sent()];
         case 6:
@@ -1675,34 +1677,34 @@ function _(A2) {
     });
   });
 }
-function $(A2, Q2) {
+function _(A2, Q2) {
   var B2 = Q2.id, g2 = Q2.owner, I2 = Q2.reward, C2 = Q2.tags, E2 = Q2.signature;
   return A2.id = B2, A2.owner = g2, I2 && (A2.reward = I2), C2 && (A2.tags = C2), A2.signature = E2, A2;
 }
-var AA = function() {
+var $ = function() {
   function A2() {
   }
   return A2.prototype.get = function(A3, Q2) {
     if (!Object.getOwnPropertyNames(this).includes(A3))
       throw new Error('Field "'.concat(A3, '" is not a property of the Arweave Transaction class.'));
-    return this[A3] instanceof Uint8Array ? Q2 && Q2.decode && Q2.string ? z(this[A3]) : Q2 && Q2.decode && !Q2.string ? this[A3] : u(this[A3]) : Q2 && Q2.decode == 1 ? Q2 && Q2.string ? b(this[A3]) : r(this[A3]) : this[A3];
+    return this[A3] instanceof Uint8Array ? Q2 && Q2.decode && Q2.string ? b(this[A3]) : Q2 && Q2.decode && !Q2.string ? this[A3] : T(this[A3]) : Q2 && Q2.decode == 1 ? Q2 && Q2.string ? m(this[A3]) : V(this[A3]) : this[A3];
   }, A2;
-}(), QA = function(A2) {
+}(), AA = function(A2) {
   function Q2(Q3, B2, g2) {
     var I2 = A2.call(this) || this;
     return I2.name = Q3, I2.value = B2, I2;
   }
   return J(Q2, A2), Q2;
-}(AA), BA = {}, gA = function(A2) {
+}($), QA = {}, BA = function(A2) {
   function Q2(Q3) {
     Q3 === void 0 && (Q3 = {});
     var B2 = A2.call(this) || this;
     return B2.format = 2, B2.id = "", B2.last_tx = "", B2.owner = "", B2.tags = [], B2.target = "", B2.quantity = "0", B2.data_size = "0", B2.data = new Uint8Array(), B2.data_root = "", B2.reward = "0", B2.signature = "", Object.assign(B2, Q3), typeof B2.data == "string" && (B2.data = ArweaveUtils.b64UrlToBuffer(B2.data)), Q3.tags && (B2.tags = Q3.tags.map(function(A3) {
-      return new QA(A3.name, A3.value);
+      return new AA(A3.name, A3.value);
     })), B2;
   }
   return J(Q2, A2), Q2.prototype.addTag = function(A3, Q3) {
-    this.tags.push(new QA(ArweaveUtils.stringToB64Url(A3), ArweaveUtils.stringToB64Url(Q3)));
+    this.tags.push(new AA(ArweaveUtils.stringToB64Url(A3), ArweaveUtils.stringToB64Url(Q3)));
   }, Q2.prototype.toJSON = function() {
     return { format: this.format, id: this.id, last_tx: this.last_tx, owner: this.owner, tags: this.tags, target: this.target, quantity: this.quantity, data: ArweaveUtils.bufferTob64Url(this.data), data_size: this.data_size, data_root: this.data_root, data_tree: this.data_tree, reward: this.reward, signature: this.signature };
   }, Q2.prototype.setOwner = function(A3) {
@@ -1753,7 +1755,7 @@ var AA = function() {
           case 4:
             return Q3 = this.tags.map(function(A4) {
               return [A4.get("name", { decode: true, string: false }), A4.get("value", { decode: true, string: false })];
-            }), [4, W([ArweaveUtils.stringToBuffer(this.format.toString()), this.get("owner", { decode: true, string: false }), this.get("target", { decode: true, string: false }), ArweaveUtils.stringToBuffer(this.quantity), ArweaveUtils.stringToBuffer(this.reward), this.get("last_tx", { decode: true, string: false }), Q3, ArweaveUtils.stringToBuffer(this.data_size), this.get("data_root", { decode: true, string: false })])];
+            }), [4, e([ArweaveUtils.stringToBuffer(this.format.toString()), this.get("owner", { decode: true, string: false }), this.get("target", { decode: true, string: false }), ArweaveUtils.stringToBuffer(this.quantity), ArweaveUtils.stringToBuffer(this.reward), this.get("last_tx", { decode: true, string: false }), Q3, ArweaveUtils.stringToBuffer(this.data_size), this.get("data_root", { decode: true, string: false })])];
           case 5:
             return [2, B2.sent()];
           case 6:
@@ -1762,41 +1764,41 @@ var AA = function() {
       });
     });
   }, Q2;
-}(AA);
-function IA(A2, Q2) {
+}($);
+function gA(A2, Q2) {
   var B2 = Q2 === void 0 ? {} : Q2, g2 = B2.formatted, I2 = g2 !== void 0 && g2, C2 = B2.decimals, E2 = C2 === void 0 ? 12 : C2;
   B2.trim;
-  var D2 = EA(A2, E2).shiftedBy(-12);
+  var D2 = CA(A2, E2).shiftedBy(-12);
   return I2 ? D2.toFormat(E2) : D2.toFixed(E2);
 }
-function CA(A2, Q2) {
-  var B2 = (Q2 === void 0 ? {} : Q2).formatted, g2 = B2 !== void 0 && B2, I2 = EA(A2).shiftedBy(12);
+function IA(A2, Q2) {
+  var B2 = (Q2 === void 0 ? {} : Q2).formatted, g2 = B2 !== void 0 && B2, I2 = CA(A2).shiftedBy(12);
   return g2 ? I2.toFormat() : I2.toFixed(0);
 }
-function EA(A2, Q2) {
-  return Q2 === void 0 && (Q2 = 12), wA(A2, Q2);
+function CA(A2, Q2) {
+  return Q2 === void 0 && (Q2 = 12), DA(A2, Q2);
 }
-var DA, wA = function(A2, Q2) {
+var EA, DA = function(A2, Q2) {
   var B2;
   try {
-    B2 = X.clone({ DECIMAL_PLACES: Q2 });
+    B2 = Z.clone({ DECIMAL_PLACES: Q2 });
   } catch (A3) {
-    console.warn("Caught big num issues, try default", A3), B2 = X.default.clone({ DECIMAL_PLACES: Q2 });
+    console.warn("Caught big num issues, try default", A3), B2 = Z.default.clone({ DECIMAL_PLACES: Q2 });
   }
   return new B2(A2);
-}, MA = function(A2) {
+}, wA = function(A2) {
   return a(void 0, void 0, void 0, function() {
     return H(this, function(Q2) {
       return [2, crypto.subtle.importKey("jwk", A2, { name: "RSA-PSS", hash: { name: "SHA-256" } }, false, ["sign"])];
     });
   });
-}, iA = function(A2, Q2, B2) {
+}, MA = function(A2, Q2, B2) {
   return (B2 === void 0 ? {} : B2).saltLength, a(void 0, void 0, void 0, function() {
     var B3, g2, I2, C2;
     return H(this, function(E2) {
       switch (E2.label) {
         case 0:
-          return I2 = (g2 = crypto.subtle).sign, C2 = [{ name: "RSA-PSS", saltLength: 32 }], [4, MA(A2)];
+          return I2 = (g2 = crypto.subtle).sign, C2 = [{ name: "RSA-PSS", saltLength: 32 }], [4, wA(A2)];
         case 1:
           return [4, I2.apply(g2, C2.concat([E2.sent(), Q2]))];
         case 2:
@@ -1805,20 +1807,20 @@ var DA, wA = function(A2, Q2) {
     });
   });
 };
-function oA(Q2) {
+function iA(Q2) {
   return a(this, void 0, void 0, function() {
     var B2, g2;
     return H(this, function(I2) {
       switch (I2.label) {
         case 0:
-          return g2 = (B2 = A).bufferTob64Url, [4, crypto.subtle.digest("SHA-256", r(Q2))];
+          return g2 = (B2 = A).bufferTob64Url, [4, crypto.subtle.digest("SHA-256", V(Q2))];
         case 1:
           return [2, g2.apply(B2, [I2.sent()])];
       }
     });
   });
 }
-var GA = { generateJWK: function() {
+var oA = { generateJWK: function() {
   return a(void 0, void 0, void 0, function() {
     var A2;
     return H(this, function(Q2) {
@@ -1833,14 +1835,14 @@ var GA = { generateJWK: function() {
                 case 1:
                   return A3 = g2.sent(), [4, crypto.subtle.exportKey("jwk", A3.privateKey)];
                 case 2:
-                  return [4, oA((Q3 = g2.sent()).n)];
+                  return [4, iA((Q3 = g2.sent()).n)];
                 case 3:
                   return B2 = g2.sent(), [2, { kty: Q3.kty, e: Q3.e, n: Q3.n, d: Q3.d, p: Q3.p, q: Q3.q, dp: Q3.dp, dq: Q3.dq, qi: Q3.qi, kid: B2 }];
               }
             });
           })];
         case 1:
-          return [4, oA((A2 = Q2.sent()).n)];
+          return [4, iA((A2 = Q2.sent()).n)];
         case 2:
           return Q2.sent(), [2, A2];
       }
@@ -1849,7 +1851,7 @@ var GA = { generateJWK: function() {
 }, connect: function(A2, Q2) {
   return a(this, void 0, void 0, function() {
     return H(this, function(Q3) {
-      return DA = A2, [2, true];
+      return EA = A2, [2, true];
     });
   });
 }, disconnect: function() {
@@ -1866,7 +1868,7 @@ var GA = { generateJWK: function() {
         case 0:
           return B2.trys.push([0, 2, , 3]), get(keypairs).forEach(function(Q3, B3, g2) {
             Q3.kty == "RSA" && (A2 = Q3);
-          }), [4, oA(A2.n)];
+          }), [4, iA(A2.n)];
         case 1:
           return [2, B2.sent()];
         case 2:
@@ -1908,7 +1910,7 @@ var GA = { generateJWK: function() {
         case 0:
           return [4, config.confirm("arweaveWalletAPI.sign", A2)];
         case 1:
-          return C2.sent() ? [4, GA.getActiveAddress()] : [2, false];
+          return C2.sent() ? [4, oA.getActiveAddress()] : [2, false];
         case 2:
           return Q2 = C2.sent(), g2 = get(keypairs), [4, Promise.all(s([], g2, true).map(function(A3) {
             A3[0];
@@ -1917,7 +1919,7 @@ var GA = { generateJWK: function() {
               return H(this, function(A4) {
                 switch (A4.label) {
                   case 0:
-                    return (g3 == null ? void 0 : g3.kty) !== "RSA" ? [3, 2] : [4, oA(g3.n)];
+                    return (g3 == null ? void 0 : g3.kty) !== "RSA" ? [3, 2] : [4, iA(g3.n)];
                   case 1:
                     A4.sent() == Q2 && (B2 = g3), A4.label = 2;
                   case 2:
@@ -1927,7 +1929,7 @@ var GA = { generateJWK: function() {
             });
           }))];
         case 3:
-          return C2.sent(), [4, iA(B2, A2.dataToSign)];
+          return C2.sent(), [4, MA(B2, A2.dataToSign)];
         case 4:
           return [2, C2.sent()];
       }
@@ -1936,7 +1938,7 @@ var GA = { generateJWK: function() {
 }, getPermissions: function() {
   return a(this, void 0, void 0, function() {
     return H(this, function(A2) {
-      return [2, DA];
+      return [2, EA];
     });
   });
 }, getArweaveConfig: function() {
@@ -1967,15 +1969,15 @@ var GA = { generateJWK: function() {
   return true;
 } };
 new TextDecoder();
-var kA = {}, FA = function() {
-  return kA;
-}, NA = { setConfig: function(A2, Q2) {
-  kA[A2] = Q2;
-}, getConfig: FA, config: kA, ed25519: O, arweaveWalletAPI: GA, proxcryptor: d, connect: function(A2) {
+var GA = {}, kA = function() {
+  return GA;
+}, FA = { setConfig: function(A2, Q2) {
+  GA[A2] = Q2;
+}, getConfig: kA, config: GA, ed25519: d, arweaveWalletAPI: oA, proxcryptor: n, connect: function(A2) {
   return a(void 0, void 0, void 0, function() {
     var Q2;
     return H(this, function(B2) {
-      if (((Q2 = FA()).confirm, false) === "function")
+      if (((Q2 = kA()).confirm, false) === "function")
         ;
       try {
         if (!(sessionStorage.getItem("STAY_CONNECTED") == "true" || Q2.confirm("connect", { origin: A2 })))
@@ -1989,10 +1991,10 @@ var kA = {}, FA = function() {
 }, stayConnected: function() {
   window.sessionStorage.setItem("STAY_CONNECTED", "true");
 }, getPublicKey: function(A2) {
-  return A2 === void 0 && (A2 = "Master Key"), d.getPublicKey(A2);
+  return A2 === void 0 && (A2 = "Master Key"), n.getPublicKey(A2);
 } };
-const hA = { OPENED_SIGNAL: "OPENED", KEYS_SYNC: "KEYS_SYNC", WINDOW_SYNC: "WINDOW_SYNC", SAVED_KEYS: "__SAVED_KEY", CLOSING: "CLOSING" };
-var cA = function() {
+const NA = { OPENED_SIGNAL: "OPENED", KEYS_SYNC: "KEYS_SYNC", WINDOW_SYNC: "WINDOW_SYNC", SAVED_KEYS: "__SAVED_KEY", CLOSING: "CLOSING" };
+var hA = function() {
   function A2() {
   }
   return A2.prototype.init = function(A3) {
@@ -2000,7 +2002,7 @@ var cA = function() {
       return H(this, function(Q2) {
         switch (Q2.label) {
           case 0:
-            return [4, c({ methods: R(R({}, NA), A3) }).promise];
+            return [4, c({ methods: R(R({}, FA), A3) }).promise];
           case 1:
             return [2, Q2.sent()];
         }
@@ -2008,5 +2010,5 @@ var cA = function() {
     });
   }, A2;
 }();
-export { hA as CONSTANTS, cA as Connection, NA as handlers, x as internals };
-//# sourceMappingURL=index-6e0a3fee.js.map
+export { NA as CONSTANTS, hA as Connection, FA as handlers, q as internals };
+//# sourceMappingURL=index-16febfd4.js.map

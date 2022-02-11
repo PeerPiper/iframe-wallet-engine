@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, set_style, add_resize_listener, run_all, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as hA, internals as x, handlers as NA } from "../chunks/index-6e0a3fee.js";
+import { CONSTANTS as NA, internals as q, handlers as FA } from "../chunks/index-16febfd4.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -290,11 +290,11 @@ function instance$a($$self, $$props, $$invalidate) {
       openedWindow = window.open(window.location.href, "_blank");
     });
     $$invalidate(2, handleMessage = async (event) => {
-      if (event.data == hA.OPENED_SIGNAL) {
+      if (event.data == NA.OPENED_SIGNAL) {
         event.ports[0].postMessage(topUrl);
         return;
       }
-      if (event.data.key == hA.WINDOW_SYNC) {
+      if (event.data.key == NA.WINDOW_SYNC) {
         console.log("Sync received: ", event.data.storedValue);
         set_store_value(storedValue, $storedValue = event.data.storedValue, $storedValue);
         event.ports[0].postMessage("Imported");
@@ -302,7 +302,7 @@ function instance$a($$self, $$props, $$invalidate) {
         openedWindow.close();
         window.focus();
       }
-      if (event.data == hA.CLOSING) {
+      if (event.data == NA.CLOSING) {
         $$invalidate(3, connecting = false);
       }
     });
@@ -1516,7 +1516,7 @@ function instance$7($$self, $$props, $$invalidate) {
   onMount(async () => {
     $$invalidate(1, handleGenerateKeypair = async () => {
       $$invalidate(2, creating = "Creating keypairs...");
-      const mnemonic = await x.generateMnemonic();
+      const mnemonic = await q.generateMnemonic();
       set_store_value(storedValue, $storedValue = __spreadProps(__spreadValues({}, $storedValue), { mnemonic }), $storedValue);
       $$invalidate(2, creating += "<br/>Created mnemonic.");
       $$invalidate(2, creating += `<br/>${mnemonic}`);
@@ -1525,13 +1525,13 @@ function instance$7($$self, $$props, $$invalidate) {
   });
   async function loadKeys() {
     console.log("LOADING KEYS into Proxcryptor...");
-    await x.loadMnemonicInProxcryptor($storedValue.mnemonic);
+    await q.loadMnemonicInProxcryptor($storedValue.mnemonic);
     console.log("LOADED KEYS into Proxcryptor...");
     dispatch("loadedKeys", "details");
     $$invalidate(3, keys = getLoadedKeys());
   }
   function getLoadedKeys() {
-    return x.getLoadedKeys();
+    return q.getLoadedKeys();
   }
   $$self.$$set = ($$props2) => {
     if ("$$scope" in $$props2)
@@ -1687,7 +1687,7 @@ function instance$6($$self, $$props, $$invalidate) {
     setWidth: (w) => $$invalidate(2, width = w)
   };
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-6e0a3fee.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-16febfd4.js"), true ? [] : void 0));
     const connection = new Connection();
     $$invalidate(6, connector = await connection.init(optionalHandlers));
     $$invalidate(3, walletReady = async () => {
@@ -1924,7 +1924,7 @@ function instance$4($$self, $$props, $$invalidate) {
   onMount(() => {
     var _a;
     if (window.location.origin === ((_a = window.opener) == null ? void 0 : _a.origin)) {
-      sendOpenerMsg(hA.OPENED_SIGNAL, (event) => {
+      sendOpenerMsg(NA.OPENED_SIGNAL, (event) => {
         console.log("iframe confirmed loaded by opener");
         $$invalidate(2, pending = false);
       });
@@ -1943,7 +1943,7 @@ function instance$4($$self, $$props, $$invalidate) {
     }
     $$invalidate(1, syncKeys = () => {
       sendOpenerMsg({
-        key: hA.WINDOW_SYNC,
+        key: NA.WINDOW_SYNC,
         storedValue: $storedValue
       }, (event) => {
         console.log("onComplete", event.data);
@@ -1957,7 +1957,7 @@ function instance$4($$self, $$props, $$invalidate) {
         console.log((_a2 = window.opener) == null ? void 0 : _a2.origin);
         console.log(window.location.origin);
         if (((_b = window.opener) == null ? void 0 : _b.origin) === window.location.origin)
-          window.opener.postMessage(hA.CLOSING);
+          window.opener.postMessage(NA.CLOSING);
         navigateBack();
       } catch (error) {
         console.log("Origins didn't match");
@@ -2353,7 +2353,7 @@ class Connect extends SvelteComponent {
 let confirmationComponents = {
   Default: { component: DefaultConfirmation }
 };
-for (const [key, value] of Object.entries(NA)) {
+for (const [key, value] of Object.entries(FA)) {
   confirmationComponents[key] = { component: DefaultConfirmation };
 }
 let customizedComponents = {
@@ -2559,8 +2559,8 @@ function instance$1($$self, $$props, $$invalidate) {
       });
     });
   };
-  NA.setConfig("confirm", confirm);
-  console.log({ getConfig: NA.config });
+  FA.setConfig("confirm", confirm);
+  console.log({ getConfig: FA.config });
   $$self.$$set = ($$props2) => {
     if ("show" in $$props2)
       $$invalidate(5, show = $$props2.show);
@@ -3251,4 +3251,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-2c9cbe38.js.map
+//# sourceMappingURL=index.svelte-12c070cb.js.map

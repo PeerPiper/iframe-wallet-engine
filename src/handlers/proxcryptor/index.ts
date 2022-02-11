@@ -44,9 +44,11 @@ export const proxcryptor: { [Key: string]: Function } = {
             { pre_name }
         )
         const methodName = "proxcryptor.selfDecrypt"
-        const args = textDecoder.decode(new Uint8Array(encryptedMessage.tag))
+        const args = "args" //textDecoder.decode(new Uint8Array(encryptedMessage.tag))
         console.log("in selfDecrypt", { methodName }, { args })
-        let confirmed = await getConfig().confirm(methodName, args)
+        const config = getConfig()
+        let confirmed = config.confirm(methodName, args)
+        await confirmed
         if (!confirmed) return false
         {
             let decrypted_message = pre
