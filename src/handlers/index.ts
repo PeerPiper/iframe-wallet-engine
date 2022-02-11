@@ -23,17 +23,20 @@ export const setHost = (h) => {
     host = h
 }
 
-let config: { [Key: string]: any } = {}
+export let config: { [Key: string]: any } = {}
 
-const setConfig = (key: string, value: any) => {
+export const setConfig = (key: string, value: any) => {
     config[key] = value
 }
 
-const getConfig = () => {
+export const getConfig = () => {
     return config
 }
 
 export const handlers: { [Key: string]: Function | Object } = {
+    setConfig,
+    getConfig,
+    config,
     ed25519,
     arweaveWalletAPI,
     proxcryptor,

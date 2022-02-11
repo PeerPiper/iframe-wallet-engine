@@ -1,8 +1,17 @@
 import { publicKeyJwkFromPublicKey, jwkToSecretBytes } from "./utils"
 import { pre, DEFAULT_NAME, wallet, assertWallet } from "../../internal/index"
+import { getConfig } from "../index"
 
 let wasmWallet
 let getPublicKey
+
+export const config = {
+    confirm: {
+        sign: () => {
+            return window.confirm(`Sign this message?`)
+        },
+    },
+}
 
 export const ed25519 = {
     setWasmWallet: (w, publicKeyGetter) => {
@@ -27,12 +36,15 @@ export const ed25519 = {
         await assertWallet()
         if (!pre || !opts.pre_name || !pre.get(opts.pre_name))
             return new Error("No signer available.")
-        // TODO, data layout to confirm what is being signed
-        if (window.confirm(`Sign message?`)) {
-            const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
-            console.log({ signature })
-            return signature
-        }
+
+        const methodName = "ed25519.sign"
+        const args = data
+        let confirmed = await getConfig().confirm(methodName, args)
+        if (!confirmed) return false
+
+        const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
+        console.log({ signature })
+        return signature
     },
 
     // technically verify doesn't need to be done in the wallet... but for convenience its here

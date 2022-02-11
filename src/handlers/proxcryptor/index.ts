@@ -1,4 +1,5 @@
 import { pre, DEFAULT_NAME, wallet } from "../../internal/index"
+import { getConfig } from "../index"
 
 const textDecoder = new TextDecoder()
 
@@ -32,17 +33,23 @@ export const proxcryptor: { [Key: string]: Function } = {
         return encrypted_message
     },
 
-    selfDecrypt: (
+    selfDecrypt: async (
         encryptedMessage: EncryptedMessage,
         pre_name: string = DEFAULT_NAME
     ): Uint8Array => {
-        if (
-            window.confirm(
-                `Authorize site to decrypt ${textDecoder.decode(
-                    new Uint8Array(encryptedMessage.tag)
-                )}?`
-            )
-        ) {
+        // if (
+        //     window.confirm(
+        // `Authorize site to decrypt ${textDecoder.decode(
+        //     new Uint8Array(encryptedMessage.tag)
+        // )}?`
+        //     )
+        // )
+        const methodName = "proxcryptor.selfDecrypt"
+        const args = textDecoder.decode(new Uint8Array(encryptedMessage.tag))
+        console.log("in selfDecrypt", { methodName }, { args })
+        let confirmed = await getConfig().confirm(methodName, args)
+        if (!confirmed) return false
+        {
             let decrypted_message = pre
                 .get(pre_name)
                 .self_decrypt(encryptedMessage) // data, tag
