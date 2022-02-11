@@ -148,11 +148,11 @@ ${A4.stack}` : g3;
       var Q2 = B3.seed_to_proxcryptor(J2(A4));
       return f2.__wrap(Q2);
     }
-    function y2(A4) {
+    function U2(A4) {
       var Q2 = k2(A4, B3.__wbindgen_malloc, B3.__wbindgen_realloc), g3 = w2, I3 = B3.mnemonic_to_proxcryptor(Q2, g3);
       return f2.__wrap(I3);
     }
-    function U2() {
+    function y2() {
       var A4 = B3.generate_ed25519_keypair();
       return P2.__wrap(A4);
     }
@@ -415,7 +415,7 @@ ${A4.stack}` : g3;
       const { instance: C3, module: E3 } = await p2(await A4, g3);
       return B3 = C3.exports, t2.__wbindgen_wasm_module = E3, B3;
     }
-    var e2 = Object.freeze({ __proto__: null, generate_mnemonic: s2, seed_to_proxcryptor: L2, mnemonic_to_proxcryptor: y2, generate_ed25519_keypair: U2, sign: q2, verify: x2, generate_ed25519_keypair_from_seed: n2, re_encrypt: d2, Proxcryptor: f2, SimpleKeypair: P2, default: t2 });
+    var e2 = Object.freeze({ __proto__: null, generate_mnemonic: s2, seed_to_proxcryptor: L2, mnemonic_to_proxcryptor: U2, generate_ed25519_keypair: y2, sign: q2, verify: x2, generate_ed25519_keypair_from_seed: n2, re_encrypt: d2, Proxcryptor: f2, SimpleKeypair: P2, default: t2 });
     const W2 = [62, 0, 0, 0, 63, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 0, 0, 0, 0, 0, 0, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51];
     function Z2(A4) {
       return W2[A4 - 43];
@@ -725,7 +725,7 @@ function s(A2, Q2, B2) {
       !g2 && I2 in Q2 || (g2 || (g2 = Array.prototype.slice.call(Q2, 0, I2)), g2[I2] = Q2[I2]);
   return A2.concat(g2 || Array.prototype.slice.call(Q2));
 }
-var L, y = new Map(), U = new Map();
+var L, U = new Map(), y = new Map();
 function K() {
   return a(this, void 0, void 0, function() {
     return H(this, function(A2) {
@@ -753,7 +753,7 @@ function K() {
     });
   });
 }();
-var S = {}, q = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "DEFAULT_PROXCRYPTOR_NAME", pre: y, keys: U, DEFAULT_NAME: "Master Key", get wallet() {
+var S = {}, q = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "DEFAULT_PROXCRYPTOR_NAME", pre: U, keys: y, DEFAULT_NAME: "Master Key", get wallet() {
   return L;
 }, assertWallet: K, setConfig: function(A2, Q2) {
   S[A2] = Q2;
@@ -778,42 +778,42 @@ var S = {}, q = Object.freeze({ __proto__: null, DEFAULT_PROXCRYPTOR_NAME: "DEFA
         case 0:
           return [4, K()];
         case 1:
-          return g2.sent(), B2 = L.mnemonic_to_proxcryptor(A2), y.set(Q2, B2), [2, Q2];
+          return g2.sent(), B2 = L.mnemonic_to_proxcryptor(A2), U.set(Q2, B2), [2, Q2];
       }
     });
   });
 }, getLoadedKeys: function() {
   var A2 = [];
-  return y.forEach(function(Q2, B2) {
+  return U.forEach(function(Q2, B2) {
     A2.push({ name: B2, publicKey: Q2.public_key(), publicKeyJWK: Q2.public_key_jwk(), publicKeyBase58: Q2.public_key_base58() });
   }), A2;
 } });
 new TextDecoder();
 var x, n = { selfEncrypt: function(A2, Q2, B2) {
-  return B2 === void 0 && (B2 = "Master Key"), y && B2 && y.get(B2) ? y.get(B2).self_encrypt(A2, Q2) : new Error("No proxy encryptor available for this name.");
+  return B2 === void 0 && (B2 = "Master Key"), U && B2 && U.get(B2) ? U.get(B2).self_encrypt(A2, Q2) : new Error("No proxy encryptor available for this name.");
 }, selfDecrypt: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = "Master Key"), a(void 0, void 0, void 0, function() {
-    var B2, g2, I2, C2;
-    return H(this, function(E2) {
-      switch (E2.label) {
+    var B2, g2;
+    return H(this, function(I2) {
+      switch (I2.label) {
         case 0:
-          return console.log("in selfDecrypt"), console.log("in selfDecrypt", { encryptedMessage: A2.tag }, { pre_name: Q2 }), B2 = "proxcryptor.selfDecrypt", g2 = "args", console.log("in selfDecrypt", { methodName: B2 }, { args: g2 }), I2 = kA(), [4, C2 = I2.confirm(B2, g2)];
+          return B2 = "proxcryptor.selfDecrypt", g2 = { tag: new Uint8Array(A2.tag) }, console.log("in selfDecrypt", { methodName: B2 }, { args: g2 }), [4, kA().confirm(B2, g2)];
         case 1:
-          return E2.sent(), C2 ? [2, y.get(Q2).self_decrypt(A2)] : [2, false];
+          return I2.sent() ? [2, U.get(Q2).self_decrypt(A2)] : [2, false];
       }
     });
   });
 }, generateReKey: function(A2, Q2, B2) {
-  return B2 === void 0 && (B2 = "Master Key"), y && B2 && y.get(B2) ? y.get(B2).generate_re_key(A2, Q2) : new Error("No proxy encryptor available for this name.");
+  return B2 === void 0 && (B2 = "Master Key"), U && B2 && U.get(B2) ? U.get(B2).generate_re_key(A2, Q2) : new Error("No proxy encryptor available for this name.");
 }, reEncrypt: function(A2, Q2, B2) {
   return L ? L.re_encrypt(A2, Q2, B2) : new Error("No wallet encryptor available");
 }, reDecrypt: function(A2, Q2) {
-  if (Q2 === void 0 && (Q2 = "Master Key"), !(y && Q2 && y.get(Q2)))
+  if (Q2 === void 0 && (Q2 = "Master Key"), !(U && Q2 && U.get(Q2)))
     return new Error("No proxy encryptor available for this name.");
-  var B2 = y.get(Q2).re_decrypt(A2);
+  var B2 = U.get(Q2).re_decrypt(A2);
   return new Uint8Array(B2);
 }, getPublicKey: function(A2) {
-  return A2 === void 0 && (A2 = "Master Key"), y && A2 && y.get(A2) ? y.get(A2).public_key() : new Error("No proxy encryptor available for name ".concat(A2, "."));
+  return A2 === void 0 && (A2 = "Master Key"), U && A2 && U.get(A2) ? U.get(A2).public_key() : new Error("No proxy encryptor available for name ".concat(A2, "."));
 } }, d = { setWasmWallet: function(A2, Q2) {
   x = A2;
 }, generateKeypair: function() {
@@ -829,9 +829,9 @@ var x, n = { selfEncrypt: function(A2, Q2, B2) {
         case 0:
           return [4, K()];
         case 1:
-          return I2.sent(), y && Q2.pre_name && y.get(Q2.pre_name) ? (B2 = A2, [4, kA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
+          return I2.sent(), U && Q2.pre_name && U.get(Q2.pre_name) ? (B2 = A2, [4, kA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
         case 2:
-          return I2.sent() ? (g2 = y.get(Q2.pre_name).sign(new Uint8Array(A2)), console.log({ signature: g2 }), [2, g2]) : [2, false];
+          return I2.sent() ? (g2 = U.get(Q2.pre_name).sign(new Uint8Array(A2)), console.log({ signature: g2 }), [2, g2]) : [2, false];
       }
     });
   });
@@ -1015,7 +1015,7 @@ var Z = B(function(A2) {
       return A3;
     }
     B2 = function A3(Q3) {
-      var B3, a2, H2, s2, L2, y2, U2, K2, S2, q2, x2 = z2.prototype = { constructor: z2, toString: null, valueOf: null }, n2 = new z2(1), d2 = 20, O2 = 4, f2 = -7, P2 = 21, p2 = -1e7, t2 = 1e7, e2 = false, W2 = 1, Z2 = 0, X2 = { prefix: "", groupSize: 3, secondaryGroupSize: 0, groupSeparator: ",", decimalSeparator: ".", fractionGroupSize: 0, fractionGroupSeparator: "\xA0", suffix: "" }, m2 = "0123456789abcdefghijklmnopqrstuvwxyz", b2 = true;
+      var B3, a2, H2, s2, L2, U2, y2, K2, S2, q2, x2 = z2.prototype = { constructor: z2, toString: null, valueOf: null }, n2 = new z2(1), d2 = 20, O2 = 4, f2 = -7, P2 = 21, p2 = -1e7, t2 = 1e7, e2 = false, W2 = 1, Z2 = 0, X2 = { prefix: "", groupSize: 3, secondaryGroupSize: 0, groupSeparator: ",", decimalSeparator: ".", fractionGroupSize: 0, fractionGroupSeparator: "\xA0", suffix: "" }, m2 = "0123456789abcdefghijklmnopqrstuvwxyz", b2 = true;
       function z2(A4, Q4) {
         var B4, I3, E3, w3, o3, G3, k3, F3, N3 = this;
         if (!(N3 instanceof z2))
@@ -1326,7 +1326,7 @@ var Z = B(function(A2) {
             ;
         }
         return function(g3, I3, E3, D3, i3) {
-          var o3, G3, k3, N3, h3, c3, Y3, J3, R3, a3, H3, s3, L3, y3, U3, K3, S3, q3 = g3.s == I3.s ? 1 : -1, x3 = g3.c, n3 = I3.c;
+          var o3, G3, k3, N3, h3, c3, Y3, J3, R3, a3, H3, s3, L3, U3, y3, K3, S3, q3 = g3.s == I3.s ? 1 : -1, x3 = g3.c, n3 = I3.c;
           if (!(x3 && x3[0] && n3 && n3[0]))
             return new z2(g3.s && I3.s && (x3 ? !n3 || x3[0] != n3[0] : n3) ? x3 && x3[0] == 0 || !n3 ? 0 * q3 : q3 / 0 : NaN);
           for (R3 = (J3 = new z2(q3)).c = [], q3 = E3 + (G3 = g3.e - I3.e) + 1, i3 || (i3 = w2, G3 = F2(g3.e / M2) - F2(I3.e / M2), q3 = q3 / M2 | 0), k3 = 0; n3[k3] == (x3[k3] || 0); k3++)
@@ -1334,12 +1334,12 @@ var Z = B(function(A2) {
           if (n3[k3] > (x3[k3] || 0) && G3--, q3 < 0)
             R3.push(1), N3 = true;
           else {
-            for (y3 = x3.length, K3 = n3.length, k3 = 0, q3 += 2, (h3 = C2(i3 / (n3[0] + 1))) > 1 && (n3 = A4(n3, h3, i3), x3 = A4(x3, h3, i3), K3 = n3.length, y3 = x3.length), L3 = K3, H3 = (a3 = x3.slice(0, K3)).length; H3 < K3; a3[H3++] = 0)
+            for (U3 = x3.length, K3 = n3.length, k3 = 0, q3 += 2, (h3 = C2(i3 / (n3[0] + 1))) > 1 && (n3 = A4(n3, h3, i3), x3 = A4(x3, h3, i3), K3 = n3.length, U3 = x3.length), L3 = K3, H3 = (a3 = x3.slice(0, K3)).length; H3 < K3; a3[H3++] = 0)
               ;
-            S3 = n3.slice(), S3 = [0].concat(S3), U3 = n3[0], n3[1] >= i3 / 2 && U3++;
+            S3 = n3.slice(), S3 = [0].concat(S3), y3 = n3[0], n3[1] >= i3 / 2 && y3++;
             do {
               if (h3 = 0, (o3 = Q4(n3, a3, K3, H3)) < 0) {
-                if (s3 = a3[0], K3 != H3 && (s3 = s3 * i3 + (a3[1] || 0)), (h3 = C2(s3 / U3)) > 1)
+                if (s3 = a3[0], K3 != H3 && (s3 = s3 * i3 + (a3[1] || 0)), (h3 = C2(s3 / y3)) > 1)
                   for (h3 >= i3 && (h3 = i3 - 1), Y3 = (c3 = A4(n3, h3, i3)).length, H3 = a3.length; Q4(c3, a3, Y3, H3) == 1; )
                     h3--, B4(c3, K3 < Y3 ? S3 : n3, Y3, i3), Y3 = c3.length, o3 = 1;
                 else
@@ -1350,7 +1350,7 @@ var Z = B(function(A2) {
               } else
                 o3 === 0 && (h3++, a3 = [0]);
               R3[k3++] = h3, a3[0] ? a3[H3++] = x3[L3] || 0 : (a3 = [x3[L3]], H3 = 1);
-            } while ((L3++ < y3 || a3[0] != null) && q3--);
+            } while ((L3++ < U3 || a3[0] != null) && q3--);
             N3 = a3[0] != null, R3[0] || R3.splice(0, 1);
           }
           if (i3 == w2) {
@@ -1361,14 +1361,14 @@ var Z = B(function(A2) {
             J3.e = G3, J3.r = +N3;
           return J3;
         };
-      }(), y2 = /^(-?)0([xbo])(?=\w[\w.]*$)/i, U2 = /^([^.]+)\.$/, K2 = /^\.([^.]+)$/, S2 = /^-?(Infinity|NaN)$/, q2 = /^\s*\+(?=[\w.])|^\s+|\s+$/g, H2 = function(A4, Q4, B4, g3) {
+      }(), U2 = /^(-?)0([xbo])(?=\w[\w.]*$)/i, y2 = /^([^.]+)\.$/, K2 = /^\.([^.]+)$/, S2 = /^-?(Infinity|NaN)$/, q2 = /^\s*\+(?=[\w.])|^\s+|\s+$/g, H2 = function(A4, Q4, B4, g3) {
         var I3, C3 = B4 ? Q4 : Q4.replace(q2, "");
         if (S2.test(C3))
           A4.s = isNaN(C3) ? null : C3 < 0 ? -1 : 1;
         else {
-          if (!B4 && (C3 = C3.replace(y2, function(A5, Q5, B5) {
+          if (!B4 && (C3 = C3.replace(U2, function(A5, Q5, B5) {
             return I3 = (B5 = B5.toLowerCase()) == "x" ? 16 : B5 == "b" ? 2 : 8, g3 && g3 != I3 ? A5 : Q5;
-          }), g3 && (I3 = g3, C3 = C3.replace(U2, "$1").replace(K2, "0.$1")), Q4 != C3))
+          }), g3 && (I3 = g3, C3 = C3.replace(y2, "$1").replace(K2, "0.$1")), Q4 != C3))
             return new z2(C3, I3);
           if (z2.DEBUG)
             throw Error(E2 + "Not a" + (g3 ? " base " + g3 : "") + " number: " + Q4);
@@ -2011,4 +2011,4 @@ var hA = function() {
   }, A2;
 }();
 export { NA as CONSTANTS, hA as Connection, FA as handlers, q as internals };
-//# sourceMappingURL=index-16febfd4.js.map
+//# sourceMappingURL=index-ef0cf3a0.js.map

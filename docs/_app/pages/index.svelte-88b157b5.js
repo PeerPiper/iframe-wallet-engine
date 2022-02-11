@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, set_style, add_resize_listener, run_all, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as NA, internals as q, handlers as FA } from "../chunks/index-16febfd4.js";
+import { CONSTANTS as NA, internals as q, handlers as FA } from "../chunks/index-ef0cf3a0.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -1687,7 +1687,7 @@ function instance$6($$self, $$props, $$invalidate) {
     setWidth: (w) => $$invalidate(2, width = w)
   };
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-16febfd4.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-ef0cf3a0.js"), true ? [] : void 0));
     const connection = new Connection();
     $$invalidate(6, connector = await connection.init(optionalHandlers));
     $$invalidate(3, walletReady = async () => {
@@ -3251,4 +3251,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-12c070cb.js.map
+//# sourceMappingURL=index.svelte-88b157b5.js.map
