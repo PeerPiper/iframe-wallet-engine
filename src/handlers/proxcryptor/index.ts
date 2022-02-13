@@ -39,7 +39,7 @@ export const proxcryptor: { [Key: string]: Function } = {
     ) => {
         const methodName = "proxcryptor.selfDecrypt"
         const args = { tag: new Uint8Array(encryptedMessage.tag) } // textDecoder.decode()
-        console.log("in selfDecrypt", { methodName }, { args })
+
         const config = getConfig()
         let confirmed = await config.confirm(methodName, args)
         if (!confirmed) return false

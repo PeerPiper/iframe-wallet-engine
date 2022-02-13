@@ -13,14 +13,18 @@
 	let pending = true;
 
 	onMount(() => {
-		// keyDetails = internals.getLoadedKeys(); // todo
-		if (window.location.origin === window.opener?.origin) {
-			sendOpenerMsg(CONSTANTS.OPENED_SIGNAL, (event) => {
-				// called when the opener replies to our message above
-				console.log('iframe confirmed loaded by opener');
-				pending = false;
-			});
+		try {
+			if (window.location.origin === window.opener?.origin) {
+				sendOpenerMsg(CONSTANTS.OPENED_SIGNAL, (event) => {
+					// called when the opener replies to our message above
+					console.log('iframe confirmed loaded by opener');
+					pending = false;
+				});
+			}
+		} catch (error) {
+			console.warn("Origins didn't match");
 		}
+
 		function sendOpenerMsg(msg, callback = (_) => {}) {
 			const channel = new MessageChannel();
 			channel.port1.onmessage = callback; // Listen for messages on port1

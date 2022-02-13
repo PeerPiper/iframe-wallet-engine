@@ -793,13 +793,13 @@ var x, n = { selfEncrypt: function(A2, Q2, B2) {
   return B2 === void 0 && (B2 = "Master Key"), U && B2 && U.get(B2) ? U.get(B2).self_encrypt(A2, Q2) : new Error("No proxy encryptor available for this name.");
 }, selfDecrypt: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = "Master Key"), a(void 0, void 0, void 0, function() {
-    var B2, g2;
-    return H(this, function(I2) {
-      switch (I2.label) {
+    var B2;
+    return H(this, function(g2) {
+      switch (g2.label) {
         case 0:
-          return B2 = "proxcryptor.selfDecrypt", g2 = { tag: new Uint8Array(A2.tag) }, console.log("in selfDecrypt", { methodName: B2 }, { args: g2 }), [4, kA().confirm(B2, g2)];
+          return B2 = { tag: new Uint8Array(A2.tag) }, [4, kA().confirm("proxcryptor.selfDecrypt", B2)];
         case 1:
-          return I2.sent() ? [2, U.get(Q2).self_decrypt(A2)] : [2, false];
+          return g2.sent() ? [2, U.get(Q2).self_decrypt(A2)] : [2, false];
       }
     });
   });
@@ -823,15 +823,15 @@ var x, n = { selfEncrypt: function(A2, Q2, B2) {
   return { publicKey: A2.public(), secretKey: A2.secret() };
 }, sign: function(A2, Q2) {
   return Q2 === void 0 && (Q2 = { pre_name: "Master Key", dataLayout: {} }), a(void 0, void 0, void 0, function() {
-    var B2, g2;
-    return H(this, function(I2) {
-      switch (I2.label) {
+    var B2;
+    return H(this, function(g2) {
+      switch (g2.label) {
         case 0:
           return [4, K()];
         case 1:
-          return I2.sent(), U && Q2.pre_name && U.get(Q2.pre_name) ? (B2 = A2, [4, kA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
+          return g2.sent(), U && Q2.pre_name && U.get(Q2.pre_name) ? (B2 = A2, [4, kA().confirm("ed25519.sign", B2)]) : [2, new Error("No signer available.")];
         case 2:
-          return I2.sent() ? (g2 = U.get(Q2.pre_name).sign(new Uint8Array(A2)), console.log({ signature: g2 }), [2, g2]) : [2, false];
+          return g2.sent() ? [2, U.get(Q2.pre_name).sign(new Uint8Array(A2))] : [2, false];
       }
     });
   });
@@ -2011,4 +2011,4 @@ var hA = function() {
   }, A2;
 }();
 export { NA as CONSTANTS, hA as Connection, FA as handlers, q as internals };
-//# sourceMappingURL=index-ef0cf3a0.js.map
+//# sourceMappingURL=index-b4992385.js.map

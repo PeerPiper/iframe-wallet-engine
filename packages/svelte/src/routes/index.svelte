@@ -31,11 +31,7 @@
 
 	function loadedKeys() {
 		save();
-		console.log('Saved loaded Keys');
 	}
-
-	// let walletReady
-	// on:loadedKeys={walletReady}
 </script>
 
 <!-- Based on whether this is the Window.Top (not an iframe) or a Child (iframe) depends on which to show: -->

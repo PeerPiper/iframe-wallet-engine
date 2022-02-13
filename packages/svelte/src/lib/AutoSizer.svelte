@@ -24,8 +24,7 @@
 		connector = await connection.init(optionalHandlers);
 
 		walletReady = async () => {
-			console.log(`Wallet connector Ready`);
-			connector.walletReady(); // works
+			connector.walletReady(); // signal to the connector the wallet has loaded
 		};
 	});
 

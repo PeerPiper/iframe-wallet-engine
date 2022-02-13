@@ -19,7 +19,7 @@ var __spreadValues = (a, b) => {
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
 import { __vitePreload } from "../chunks/preload-helper-71185a79.js";
 import { writable, SvelteComponent, init, safe_not_equal, empty, insert_hydration, group_outros, transition_out, check_outros, transition_in, detach, element, claim_element, children, attr, listen, is_function, component_subscribe, onMount, set_store_value, globals, text, claim_text, append_hydration, prevent_default, set_data, noop, create_slot, update_slot_base, get_all_dirty_from_scope, get_slot_changes, space, claim_space, binding_callbacks, svg_element, claim_svg_element, add_render_callback, create_in_transition, create_out_transition, fade, create_component, claim_component, mount_component, destroy_component, destroy_each, createEventDispatcher, HtmlTagHydration, claim_html_tag, set_style, add_resize_listener, run_all, bubble } from "../chunks/vendor-674f343c.js";
-import { CONSTANTS as NA, internals as q, handlers as FA } from "../chunks/index-ef0cf3a0.js";
+import { CONSTANTS as NA, internals as q, handlers as FA } from "../chunks/index-b4992385.js";
 const storedValue = writable();
 var Connector_svelte_svelte_type_style_lang = "";
 const { window: window_1 } = globals;
@@ -1524,9 +1524,7 @@ function instance$7($$self, $$props, $$invalidate) {
     });
   });
   async function loadKeys() {
-    console.log("LOADING KEYS into Proxcryptor...");
     await q.loadMnemonicInProxcryptor($storedValue.mnemonic);
-    console.log("LOADED KEYS into Proxcryptor...");
     dispatch("loadedKeys", "details");
     $$invalidate(3, keys = getLoadedKeys());
   }
@@ -1687,11 +1685,10 @@ function instance$6($$self, $$props, $$invalidate) {
     setWidth: (w) => $$invalidate(2, width = w)
   };
   onMount(async () => {
-    ({ Connection } = await __vitePreload(() => import("../chunks/index-ef0cf3a0.js"), true ? [] : void 0));
+    ({ Connection } = await __vitePreload(() => import("../chunks/index-b4992385.js"), true ? [] : void 0));
     const connection = new Connection();
     $$invalidate(6, connector = await connection.init(optionalHandlers));
     $$invalidate(3, walletReady = async () => {
-      console.log(`Wallet connector Ready`);
       connector.walletReady();
     });
   });
@@ -1923,11 +1920,15 @@ function instance$4($$self, $$props, $$invalidate) {
   let pending = true;
   onMount(() => {
     var _a;
-    if (window.location.origin === ((_a = window.opener) == null ? void 0 : _a.origin)) {
-      sendOpenerMsg(NA.OPENED_SIGNAL, (event) => {
-        console.log("iframe confirmed loaded by opener");
-        $$invalidate(2, pending = false);
-      });
+    try {
+      if (window.location.origin === ((_a = window.opener) == null ? void 0 : _a.origin)) {
+        sendOpenerMsg(NA.OPENED_SIGNAL, (event) => {
+          console.log("iframe confirmed loaded by opener");
+          $$invalidate(2, pending = false);
+        });
+      }
+    } catch (error) {
+      console.warn("Origins didn't match");
     }
     function sendOpenerMsg(msg, callback = (_) => {
     }) {
@@ -2543,7 +2544,6 @@ function instance$1($$self, $$props, $$invalidate) {
   let confirmSection;
   let params;
   const confirm = async (methodName, args) => {
-    console.log("calling confirm");
     $$invalidate(0, confirmSection = methodName);
     $$invalidate(4, params = args);
     return new Promise((resolve, reject) => {
@@ -2560,7 +2560,6 @@ function instance$1($$self, $$props, $$invalidate) {
     });
   };
   FA.setConfig("confirm", confirm);
-  console.log({ getConfig: FA.config });
   $$self.$$set = ($$props2) => {
     if ("show" in $$props2)
       $$invalidate(5, show = $$props2.show);
@@ -2568,9 +2567,6 @@ function instance$1($$self, $$props, $$invalidate) {
       $$invalidate(6, hide = $$props2.hide);
   };
   $$self.$$.update = () => {
-    if ($$self.$$.dirty & 1) {
-      confirmSection && console.log("leaf:", { confirmationComponents }, { confirmSection }, leaf(confirmationComponents, confirmSection));
-    }
     if ($$self.$$.dirty & 1) {
       $$invalidate(1, active = confirmSection ? leaf(confirmationComponents, confirmSection) || confirmationComponents.Default : false);
     }
@@ -3251,4 +3247,4 @@ class Routes extends SvelteComponent {
   }
 }
 export { Routes as default };
-//# sourceMappingURL=index.svelte-88b157b5.js.map
+//# sourceMappingURL=index.svelte-2ad03516.js.map

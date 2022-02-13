@@ -43,7 +43,7 @@ export const ed25519 = {
         if (!confirmed) return false
 
         const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
-        console.log({ signature })
+
         return signature
     },
 

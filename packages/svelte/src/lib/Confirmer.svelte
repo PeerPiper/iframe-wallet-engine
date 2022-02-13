@@ -14,7 +14,6 @@
 
 	// set confirm fn
 	const confirm = async (methodName, args) => {
-		console.log('calling confirm');
 		confirmSection = methodName;
 		params = args;
 		return new Promise((resolve, reject) => {
@@ -33,14 +32,7 @@
 
 	// pass the above confirm function to the handlers so they can use it when their methods are called
 	handlers.setConfig('confirm', confirm);
-	console.log({ getConfig: handlers.config });
-	$: confirmSection &&
-		console.log(
-			'leaf:',
-			{ confirmationComponents },
-			{ confirmSection },
-			leaf(confirmationComponents, confirmSection)
-		);
+
 	$: active = confirmSection
 		? leaf(confirmationComponents, confirmSection) || confirmationComponents.Default
 		: false; // picked by $confirm fn below
