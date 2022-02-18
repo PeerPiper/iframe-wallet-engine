@@ -105,6 +105,7 @@ export const proxcryptor: { [Key: string]: Function } = {
                 `No proxy encryptor available for name ${pre_name}.`
             )
         let publicKey = pre.get(pre_name).public_key()
-        return publicKey
+        if (publicKey.length == 32) return publicKey
+        return false
     },
 }
