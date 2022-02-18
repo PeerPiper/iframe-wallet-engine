@@ -15,6 +15,8 @@
 	// browser functions (set in onMount to ensure browser loaded)
 	let ImmortalDB, save, mounted;
 
+	let syncing;
+
 	onMount(async () => {
 		({ ImmortalDB } = await import('immortal-db'));
 		const storedString = await ImmortalDB.get(STORED_VALUE, def);
@@ -24,6 +26,11 @@
 			ImmortalDB.set(STORED_VALUE, JSON.stringify($storedValue)); // auto save when $storedValue changes
 		};
 
+		try {
+			syncing = window.opener && window.opener?.origin === window.location.origin;
+		} catch (error) {
+			// not syncing by same origin, that's ok it was probably a regular link from somewhere
+		}
 		mounted = true;
 	});
 
@@ -38,7 +45,7 @@
 {#if window == window.top}
 	<!-- NOT an iframe  -->
 	<div class="top-wrapper">
-		{#if window.opener}
+		{#if mounted && syncing}
 			<!-- Opened handles on:loadedKeys by ALSO syncing them with the opener window -->
 			<Opened let:syncKeys>
 				<Manager>
