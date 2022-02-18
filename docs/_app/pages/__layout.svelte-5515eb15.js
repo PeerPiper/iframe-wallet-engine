@@ -224,7 +224,7 @@ function create_fragment$3(ctx) {
 function instance$3($$self, $$props, $$invalidate) {
   let Utils;
   onMount(async () => {
-    ({ Utils } = await __vitePreload(() => import("../chunks/index-b4992385.js"), true ? [] : void 0));
+    ({ Utils } = await __vitePreload(() => import("../chunks/index-15ddafbb.js"), true ? [] : void 0));
   });
   let { address } = $$props;
   let { alt = "Wallet Icon" } = $$props;
@@ -1325,4 +1325,4 @@ class _layout extends SvelteComponent {
   }
 }
 export { _layout as default };
-//# sourceMappingURL=__layout.svelte-396e8bae.js.map
+//# sourceMappingURL=__layout.svelte-5515eb15.js.map
