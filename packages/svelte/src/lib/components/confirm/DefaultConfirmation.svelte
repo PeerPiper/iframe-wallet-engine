@@ -1,35 +1,21 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
 
-	const dispatch = createEventDispatcher();
-
 	export let props;
-
-	export function handleConfirm() {
-		let value = true;
-		dispatch('confirmed', { value });
-	}
-
-	export function handleDenied() {
-		let value = false;
-		dispatch('denied', { value });
-	}
+	export let handleConfirmed;
+	export let handleDenied;
 </script>
 
 <div>
-	<!-- *also* pass handleConfirm up to slot parent, so they can trigger it with their custom button -->
-	<slot {handleConfirm} {props}>
-		<div class="attention">
-			<!-- this is default content, override with slot -->
-			<div>
-				⚠️ Authorize {props.method} from your wallet?
-			</div>
-			<div class="submit">
-				<button class="yellow" on:click={handleDenied}>No</button>
-				<button on:click={handleConfirm}>Yes</button>
-			</div>
+	<div class="attention">
+		<div>
+			⚠️ Authorize {props.method} from your wallet?
 		</div>
-	</slot>
+		<div class="submit">
+			<button class="yellow" on:click={handleDenied}>No</button>
+			<button class="green" on:click={handleConfirmed}>Yes</button>
+		</div>
+	</div>
 </div>
 
 <style>
