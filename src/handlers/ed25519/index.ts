@@ -31,18 +31,21 @@ export const ed25519 = {
     },
     sign: async (
         data: Uint8Array,
-        opts = { pre_name: DEFAULT_NAME, dataLayout: {} }
+        dataLayout = {} // to confirm that the data the apps wants you to sign is what you want to sign
     ) => {
         await assertWallet()
-        if (!pre || !opts.pre_name || !pre.get(opts.pre_name))
+        let pre_name = DEFAULT_NAME
+        if (!pre || !pre_name || !pre.get(pre_name))
             return new Error("No signer available.")
 
         const methodName = "ed25519.sign"
-        const args = data
-        let confirmed = await getConfig().confirm(methodName, args)
+        let confirmed = await getConfig().confirm(methodName, {
+            data,
+            dataLayout,
+        })
         if (!confirmed) return false
 
-        const signature = pre.get(opts.pre_name).sign(new Uint8Array(data))
+        const signature = pre.get(pre_name).sign(new Uint8Array(data))
 
         return signature
     },
