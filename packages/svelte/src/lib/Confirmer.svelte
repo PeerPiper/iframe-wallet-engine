@@ -7,47 +7,54 @@
 
 	const leaf = (obj, path) => path.split('.').reduce((value, el) => value && value[el], obj);
 
-	let handleConfirmed;
-	let handleDenied;
-	let confirmSection;
-	let params;
+	let requests = [];
 
 	// set confirm fn
-	const confirm = async (methodName, args) => {
-		confirmSection = methodName;
-		params = args;
+	// calling confirm adds a confirmation request to the list of outstanding request
+	// resolving the Promise removes the request
+	// if last request, hide() the UI
+	const confirm = async (confirmSection, params) => {
+		const component = confirmSection
+			? leaf(confirmationComponents, confirmSection) || confirmationComponents.Default
+			: false;
+
 		return new Promise((resolve, reject) => {
-			handleConfirmed = () => {
-				confirmSection = null; // reset UI
-				hide();
+			const handleConfirmed = () => {
+				common();
 				resolve(true); // signal handler to continue with action
 			};
-			handleDenied = () => {
-				confirmSection = null; // reset UI
-				hide();
+			const handleDenied = () => {
+				common();
 				resolve(false); // signal handler to continue with action
 			};
+
+			const thisRequest = { component, confirmSection, params, handleConfirmed, handleDenied };
+
+			function common() {
+				requests = requests.filter((req) => req !== thisRequest); // find and remove element
+				if (requests.length == 0) hide(); // hide if last one removed
+			}
+
+			requests = [...requests, thisRequest];
+			show(); // trigger the UI to show this request
 		});
 	};
 
 	// pass the above confirm function to the handlers so they can use it when their methods are called
 	handlers.setConfig('confirm', confirm);
-
-	$: active = confirmSection
-		? leaf(confirmationComponents, confirmSection) || confirmationComponents.Default
-		: false; // picked by $confirm fn below
-	$: active && show(); //trigger show
 </script>
 
-{#if active}
-	<div class="active">
-		<svelte:component
-			this={active.component}
-			props={{ method: confirmSection, params }}
-			on:confirmed={handleConfirmed}
-			on:denied={handleDenied}
-		/>
-	</div>
+{#if requests}
+	{#each requests as { component, confirmSection, params, handleConfirmed, handleDenied }}
+		<div class="active">
+			<svelte:component
+				this={component.component}
+				props={{ method: confirmSection, params }}
+				{handleConfirmed}
+				{handleDenied}
+			/>
+		</div>
+	{/each}
 {/if}
 
 <style>
