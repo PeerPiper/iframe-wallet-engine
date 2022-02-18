@@ -2,6 +2,8 @@ import { handlers } from '@peerpiper/iframe-wallet-engine';
 import DefaultConfirmation from './DefaultConfirmation.svelte';
 import Connect from './Connect.svelte';
 // import ArweaveSign from '../arweave/ConfirmSign.svelte';
+import Sign from './Sign.svelte';
+import Decrypt from './Decrypt.svelte';
 
 let confirmationComponents = {
 	Default: { component: DefaultConfirmation }
@@ -16,11 +18,18 @@ for (const [key, value] of Object.entries(handlers)) {
 let customizedComponents = {
 	connect: { component: Connect },
 	ed25519: {
-		// sign: {}
+		sign: {
+			component: Sign
+		}
 	},
 	arweaveWalletAPI: {
 		sign: {
 			// component: ArweaveSign
+		}
+	},
+	proxcryptor: {
+		selfDecrypt: {
+			component: Decrypt
 		}
 	}
 };
