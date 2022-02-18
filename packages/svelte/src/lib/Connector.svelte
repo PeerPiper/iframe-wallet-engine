@@ -31,7 +31,7 @@
 			}
 
 			if (event.data.key == CONSTANTS.WINDOW_SYNC) {
-				console.log('Sync received: ', event.data.storedValue);
+				console.log('Sync received ');
 				$storedValue = event.data.storedValue;
 
 				// save mnemonic to localstorage
