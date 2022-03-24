@@ -1,8 +1,8 @@
 {
     "name": "@peerpiper/iframe-wallet-engine",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "private": true,
-"svelte": "src/index.js",
+    "svelte": "src/index.js",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
     "scripts": {
@@ -10,7 +10,6 @@
         "dev": "rollup -c -w"
     },
     "devDependencies": {
-        "@peerpiper/wasm-wallet-bindings": "file:../rust-projects/transform_recryption/wasm-code/js-build",
         "@rollup/plugin-commonjs": "^17.0.0",
         "@rollup/plugin-json": "^4.1.0",
         "@rollup/plugin-node-resolve": "^11.0.0",
@@ -24,6 +23,7 @@
         "svelte-preprocess": "^4.10.2"
     },
     "dependencies": {
+        "@peerpiper/wasm-wallet-bindings": "github:peerpiper/wasm-wallet-bindings",
         "@stablelib/base64": "^1.0.1",
         "bignumber.js": "^9.0.2",
         "penpal": "^6.2.1",
