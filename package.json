@@ -1,8 +1,8 @@
 {
     "name": "@peerpiper/iframe-wallet-engine",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "private": true,
-    "svelte": "src/index.js",
+    "_svelte": "src/index.js",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
     "scripts": {
@@ -23,7 +23,7 @@
         "svelte-preprocess": "^4.10.2"
     },
     "dependencies": {
-        "@peerpiper/wasm-wallet-bindings": "github:peerpiper/wasm-wallet-bindings#35e41d605d615829afd39e632635e83969fa0205",
+        "@peerpiper/wasm-wallet-bindings": "github:peerpiper/wasm-wallet-bindings",
         "@stablelib/base64": "^1.0.1",
         "bignumber.js": "^9.0.2",
         "did-jwt": "^6.0.0",
