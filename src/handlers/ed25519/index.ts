@@ -1,6 +1,7 @@
 import { publicKeyJwkFromPublicKey, jwkToSecretBytes } from "./utils"
 import { pre, DEFAULT_NAME, wallet, assertWallet } from "../../internal/index"
 import { getConfig } from "../index"
+import { Ed25519Provider } from "./provider"
 
 let wasmWallet
 let getPublicKey
@@ -63,6 +64,10 @@ export const ed25519 = {
             new Uint8Array(signature)
         )
         return verified
+    },
+
+    didProvider: async () => {
+        // Provider is set during initialization since we need the keys
     },
 }
 
