@@ -1,12 +1,15 @@
 import { getWallet } from "@peerpiper/wasm-wallet-bindings"
 import type { Proxcryptor } from "../types/proxcryptor"
 import { publicKeyJwkFromPublicKey } from "../handlers/ed25519/utils.ts"
+import { generateJWK, jwkToCryptoKey } from "../handlers/arweave"
 
 export const DEFAULT_PROXCRYPTOR_NAME = "DEFAULT_PROXCRYPTOR_NAME"
 export const pre = new Map()
+export const rsa = new Map()
 export let keys = new Map()
 
 export const DEFAULT_NAME = "Master Key"
+export const DEFAULT_RSA_NAME = "Arweave_1"
 
 export let wallet
 
@@ -41,6 +44,18 @@ export const generateMnemonic = async function () {
     return wallet.generate_mnemonic()
 }
 
+export const generateRsaJwk = function () {
+    const jwk = generateJWK()
+    rsa.set(DEFAULT_RSA_NAME, jwk)
+    return jwk
+}
+
+export const loadSecrets = async function ({ mnemonic, rsajwk }) {
+    rsa.set(DEFAULT_RSA_NAME, rsajwk)
+    await loadMnemonicInProxcryptor(mnemonic)
+    // also pass keypair to create a Provider
+}
+
 export const loadMnemonicInProxcryptor = async function (
     mnemonic: string,
     pre_name?: string = DEFAULT_NAME
@@ -63,5 +78,21 @@ export const getLoadedKeys = () => {
         })
     })
 
+    // and now for RSA keytype
+    rsa.forEach((keyDetails, nickname) => {
+        results.push({
+            name: nickname,
+            publicKey: keyDetails.n, // todo: to UInt8Array?
+            publicKeyJWK: {
+                kty: "RSA",
+                kid: keyDetails.kid,
+                e: "AQAB", //  value 65537, the octet sequence to be base64url-encoded MUST consist of the three octets [1, 0, 1]; the resulting representation for this value is "AQAB"
+                n: keyDetails.n,
+            }, // already a JWK
+            publicKeyBase58: null, // address = base64URL encoded hash of jwk.n
+        })
+    })
+
+    console.log({ rsa, results })
     return results
 }

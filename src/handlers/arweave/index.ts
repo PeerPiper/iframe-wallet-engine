@@ -1,9 +1,17 @@
 // import { JWKInterface, JWKPublicInterface } from 'arweave/wallet';
 import * as ArweaveUtils from "./utils"
+import { Transaction } from "./utils"
+import { rsa } from "../../internal/index"
+import { getConfig } from "../index"
+import type Transaction from "./utils"
+
+export interface SignatureOptions {
+    saltLength?: number
+}
 
 let storedPermissions
 
-const jwkToCryptoKey = async (jwk: JWKInterface): Promise<CryptoKey> => {
+export const jwkToCryptoKey = async (jwk: JWKInterface): Promise<CryptoKey> => {
     return crypto.subtle.importKey(
         "jwk",
         jwk,
@@ -21,12 +29,12 @@ const jwkToCryptoKey = async (jwk: JWKInterface): Promise<CryptoKey> => {
 const subtleSign = async (
     jwk: JWKInterface,
     data: Uint8Array,
-    { saltLength }: SignatureOptions = {}
+    { saltLength }: SignatureOptions = { saltLength: 32 }
 ): Promise<Uint8Array> => {
     let signature = await crypto.subtle.sign(
         {
             name: "RSA-PSS",
-            saltLength: 32,
+            saltLength,
         },
         await jwkToCryptoKey(jwk),
         data
@@ -34,7 +42,8 @@ const subtleSign = async (
 
     return new Uint8Array(signature)
 }
-const generateJWK = async (): Promise<JWKInterface> => {
+
+export const generateJWK = async (): Promise<JWKInterface> => {
     let cryptoKey = await crypto.subtle.generateKey(
         {
             name: "RSA-PSS",
@@ -75,7 +84,7 @@ async function publicKeytoJWK(publicModulus: string) {
         n: publicModulus,
     }
     // await ownerToAddress(publicKeyJWK.n);
-    return publicKey
+    return publicKeyJWK
 }
 
 async function ownerToAddress(owner: string): Promise<string> {
@@ -114,10 +123,9 @@ export const arweaveWalletAPI = {
     async getActiveAddress() {
         try {
             let jwk
-            const kp = get(keypairs) // svelte stores
 
             // find the RSA key
-            kp.forEach((value, key, map) => {
+            rsa.forEach((value, key, map) => {
                 if (value.kty == "RSA") {
                     jwk = value
                 }
@@ -140,18 +148,29 @@ export const arweaveWalletAPI = {
     async addToken(id: string): Promise<void> {
         // TODO
     },
-    async sign(params): Promise<Signature> {
-        let confirmed = await config.confirm("arweaveWalletAPI.sign", params)
+    async sign(
+        transaction: Transaction,
+        options?: SignatureOptions
+    ): Promise<Signature> {
+        const methodName = "arweaveWalletAPI.sign"
+        let confirmed = await getConfig().confirm(methodName, transaction)
         if (!confirmed) return false
 
         const address = await arweaveWalletAPI.getActiveAddress()
         // get keys
         let jwk
-        const kp = get(keypairs) // svelte stores
 
-        // find the RSA key
+        // TODO: Temporary: only works with a single key
+        rsa.forEach((value, key, map) => {
+            if (value.kty == "RSA") {
+                jwk = value
+            }
+        })
+
+        // find the matching RSA key
+        // Broken for some javascript reason I haven't figured out yet
         await Promise.all(
-            [...kp].map(async ([k, value]) => {
+            [...rsa.entries()].map(async ([k, value]) => {
                 if (value?.kty === "RSA") {
                     const addr = await ownerToAddress(value.n)
                     if (addr == address) {
@@ -160,9 +179,22 @@ export const arweaveWalletAPI = {
                 }
             })
         )
+
         // pull out RSA matching jwk.n
-        const rawSig = await subtleSign(jwk, params.dataToSign)
-        return rawSig
+        let tx = new Transaction(transaction)
+        tx.setOwner(jwk.n)
+        let dataToSign = await tx.getSignatureData()
+
+        const rawSignature = await subtleSign(jwk, dataToSign, options)
+        let id = await crypto.subtle.digest("SHA-256", rawSignature)
+
+        tx.setSignature({
+            id: ArweaveUtils.bufferTob64Url(id),
+            owner: jwk.n,
+            signature: ArweaveUtils.bufferTob64Url(rawSignature),
+        })
+
+        return tx
     },
     async getPermissions(): Promise<PermissionType[]> {
         const permissions: PermissionType[] = storedPermissions
