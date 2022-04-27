@@ -259,7 +259,7 @@ export class Transaction extends BaseObject implements TransactionInterface {
 		// or where the data was filled in from /tx/data endpoint.
 		// data will be b64url encoded, so decode it.
 		if (typeof this.data === 'string') {
-			this.data = ArweaveUtils.b64UrlToBuffer(this.data as string);
+			this.data = b64UrlToBuffer(this.data as string);
 		}
 
 		if (attributes.tags) {
@@ -270,7 +270,7 @@ export class Transaction extends BaseObject implements TransactionInterface {
 	}
 
 	public addTag(name: string, value: string) {
-		this.tags.push(new Tag(ArweaveUtils.stringToB64Url(name), ArweaveUtils.stringToB64Url(value)));
+		this.tags.push(new Tag(stringToB64Url(name), stringToB64Url(value)));
 	}
 
 	public toJSON() {
@@ -282,7 +282,7 @@ export class Transaction extends BaseObject implements TransactionInterface {
 			tags: this.tags,
 			target: this.target,
 			quantity: this.quantity,
-			data: ArweaveUtils.bufferTob64Url(this.data),
+			data: bufferTob64Url(this.data),
 			data_size: this.data_size,
 			data_root: this.data_root,
 			data_tree: this.data_tree,
@@ -324,7 +324,7 @@ export class Transaction extends BaseObject implements TransactionInterface {
 
 		if (!this.chunks && data.byteLength > 0) {
 			this.chunks = await generateTransactionChunks(data);
-			this.data_root = ArweaveUtils.bufferTob64Url(this.chunks.data_root);
+			this.data_root = bufferTob64Url(this.chunks.data_root);
 		}
 
 		if (!this.chunks && data.byteLength === 0) {
@@ -349,9 +349,9 @@ export class Transaction extends BaseObject implements TransactionInterface {
 		return {
 			data_root: this.data_root,
 			data_size: this.data_size,
-			data_path: ArweaveUtils.bufferTob64Url(proof.proof),
+			data_path: bufferTob64Url(proof.proof),
 			offset: proof.offset.toString(),
-			chunk: ArweaveUtils.bufferTob64Url(data.slice(chunk.minByteRange, chunk.maxByteRange))
+			chunk: bufferTob64Url(data.slice(chunk.minByteRange, chunk.maxByteRange))
 		};
 	}
 
@@ -359,19 +359,19 @@ export class Transaction extends BaseObject implements TransactionInterface {
 		switch (this.format) {
 			case 1:
 				let tags = this.tags.reduce((accumulator: Uint8Array, tag: Tag) => {
-					return ArweaveUtils.concatBuffers([
+					return concatBuffers([
 						accumulator,
 						tag.get('name', { decode: true, string: false }),
 						tag.get('value', { decode: true, string: false })
 					]);
 				}, new Uint8Array());
 
-				return ArweaveUtils.concatBuffers([
+				return concatBuffers([
 					this.get('owner', { decode: true, string: false }),
 					this.get('target', { decode: true, string: false }),
 					this.get('data', { decode: true, string: false }),
-					ArweaveUtils.stringToBuffer(this.quantity),
-					ArweaveUtils.stringToBuffer(this.reward),
+					stringToBuffer(this.quantity),
+					stringToBuffer(this.reward),
 					this.get('last_tx', { decode: true, string: false }),
 					tags
 				]);
@@ -386,14 +386,14 @@ export class Transaction extends BaseObject implements TransactionInterface {
 				]);
 
 				return await deepHash([
-					ArweaveUtils.stringToBuffer(this.format.toString()),
+					stringToBuffer(this.format.toString()),
 					this.get('owner', { decode: true, string: false }),
 					this.get('target', { decode: true, string: false }),
-					ArweaveUtils.stringToBuffer(this.quantity),
-					ArweaveUtils.stringToBuffer(this.reward),
+					stringToBuffer(this.quantity),
+					stringToBuffer(this.reward),
 					this.get('last_tx', { decode: true, string: false }),
 					tagList,
-					ArweaveUtils.stringToBuffer(this.data_size),
+					stringToBuffer(this.data_size),
 					this.get('data_root', { decode: true, string: false })
 				]);
 			default:
