@@ -84,9 +84,8 @@ export default [
             }),
             commonjs(),
 
-            // If we're building for production (npm run build
-            // instead of npm run dev), minify
-            production && terser(),
+            // If we're building for production , minify
+            // production && terser(),
         ],
         watch: {
             clearScreen: false,
