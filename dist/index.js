@@ -1409,16 +1409,6 @@
 	    }
 	}
 
-	function __spreadArray(to, from, pack) {
-	    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-	        if (ar || !(i in from)) {
-	            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-	            ar[i] = from[i];
-	        }
-	    }
-	    return to.concat(ar || Array.prototype.slice.call(from));
-	}
-
 	// Copyright (C) 2016 Dmitry Chestnykh
 	// MIT License. See LICENSE file for details.
 	var __extends = (commonjsGlobal && commonjsGlobal.__extends) || (function () {
@@ -5106,14 +5096,6 @@
 	                case 0: return [4 /*yield*/, generateJWK()];
 	                case 1:
 	                    jwk = _a.sent();
-	                    return [4 /*yield*/, ownerToAddress(jwk.n)
-	                        // add key to keychain?
-	                        // $keys = [$keys, { address: jwk }];
-	                    ];
-	                case 2:
-	                    _a.sent();
-	                    // add key to keychain?
-	                    // $keys = [$keys, { address: jwk }];
 	                    return [2 /*return*/, jwk];
 	            }
 	        });
@@ -5193,7 +5175,6 @@
 	    sign: function (transaction, options) {
 	        return __awaiter(this, void 0, void 0, function () {
 	            var methodName, confirmed, address, jwk, tx, dataToSign, rawSignature, id;
-	            var _this = this;
 	            return __generator(this, function (_a) {
 	                switch (_a.label) {
 	                    case 0:
@@ -5210,48 +5191,20 @@
 	                        address = _a.sent();
 	                        // TODO: Temporary: only works with a single key
 	                        rsa.forEach(function (value, key, map) {
-	                            if (value.kty == "RSA") {
+	                            if (value.kty == "RSA" && (value === null || value === void 0 ? void 0 : value.kid) == address) {
 	                                jwk = value;
 	                            }
 	                        });
-	                        // find the matching RSA key
-	                        // Broken for some javascript reason I haven't figured out yet
-	                        return [4 /*yield*/, Promise.all(__spreadArray([], rsa.entries(), true).map(function (_a) {
-	                                _a[0]; var value = _a[1];
-	                                return __awaiter(_this, void 0, void 0, function () {
-	                                    var addr;
-	                                    return __generator(this, function (_b) {
-	                                        switch (_b.label) {
-	                                            case 0:
-	                                                if (!((value === null || value === void 0 ? void 0 : value.kty) === "RSA")) return [3 /*break*/, 2];
-	                                                return [4 /*yield*/, ownerToAddress(value.n)];
-	                                            case 1:
-	                                                addr = _b.sent();
-	                                                if (addr == address) {
-	                                                    jwk = value;
-	                                                }
-	                                                _b.label = 2;
-	                                            case 2: return [2 /*return*/];
-	                                        }
-	                                    });
-	                                });
-	                            }))
-	                            // pull out RSA matching jwk.n
-	                        ];
-	                    case 3:
-	                        // find the matching RSA key
-	                        // Broken for some javascript reason I haven't figured out yet
-	                        _a.sent();
 	                        tx = new Transaction(transaction);
 	                        tx.setOwner(jwk.n);
 	                        return [4 /*yield*/, tx.getSignatureData()];
-	                    case 4:
+	                    case 3:
 	                        dataToSign = _a.sent();
 	                        return [4 /*yield*/, subtleSign(jwk, dataToSign, options)];
-	                    case 5:
+	                    case 4:
 	                        rawSignature = _a.sent();
 	                        return [4 /*yield*/, crypto.subtle.digest("SHA-256", rawSignature)];
-	                    case 6:
+	                    case 5:
 	                        id = _a.sent();
 	                        tx.setSignature({
 	                            id: bufferTob64Url(id),
@@ -5429,7 +5382,6 @@
 	            publicKeyBase58: null
 	        });
 	    });
-	    console.log({ rsa: rsa, results: results });
 	    return results;
 	};
 
