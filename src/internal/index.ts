@@ -93,6 +93,5 @@ export const getLoadedKeys = () => {
         })
     })
 
-    console.log({ rsa, results })
     return results
 }
