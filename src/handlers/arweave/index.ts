@@ -99,9 +99,6 @@ async function ownerToAddress(owner: string): Promise<string> {
 export const arweaveWalletAPI = {
     generateJWK: async () => {
         const jwk = await generateJWK()
-        const address = await ownerToAddress(jwk.n)
-        // add key to keychain?
-        // $keys = [$keys, { address: jwk }];
         return jwk
     },
 
@@ -162,23 +159,10 @@ export const arweaveWalletAPI = {
 
         // TODO: Temporary: only works with a single key
         rsa.forEach((value, key, map) => {
-            if (value.kty == "RSA") {
+            if (value.kty == "RSA" && value?.kid == address) {
                 jwk = value
             }
         })
-
-        // find the matching RSA key
-        // Broken for some javascript reason I haven't figured out yet
-        await Promise.all(
-            [...rsa.entries()].map(async ([k, value]) => {
-                if (value?.kty === "RSA") {
-                    const addr = await ownerToAddress(value.n)
-                    if (addr == address) {
-                        jwk = value
-                    }
-                }
-            })
-        )
 
         // pull out RSA matching jwk.n
         let tx = new Transaction(transaction)
